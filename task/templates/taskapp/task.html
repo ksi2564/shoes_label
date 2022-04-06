@@ -1,5 +1,73 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% load static %}
+{% load humanize %}
 
+{% block content %}
+    <div class="container">
+
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search here" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-1" type="submit">검색</button>
+        </form>
+        <div class="row" style="margin: .5rem .7rem">
+            <a href="#" style="color: black; margin-right: 1rem">Filter</a>
+            <span style="margin-right: 1rem">|</span>
+            <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
+            <span style="margin-right: 1rem">></span>
+            <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+        </div>
+        <div class="row">
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/1.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/2.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/3.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/4.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/5.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/6.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/7.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/8.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/9.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: .5rem;">
+                <div class="card">
+                    <img src="{% static 'images/10.png' %}" alt="..." loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
