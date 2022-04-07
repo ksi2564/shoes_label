@@ -16,3 +16,13 @@ img {
     max-width: 100%;
     display: block;
 }
+
+.btn-search {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    display: block;
+    height: 40px;
+    width: 40px;
+    text-indent: -9999px;
+}
