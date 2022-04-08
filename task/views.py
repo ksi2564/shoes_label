@@ -6,3 +6,7 @@ from django.shortcuts import render
 
 def task(request):
     return render(request, 'taskapp/task.html')
+
+
+def uplaod_data(request):
+    return render(request, 'taskapp/data_upload.html')

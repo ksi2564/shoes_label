@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div style="margin: 0 1.7rem">
+            <h2 style="font-weight: bold;">업로드</h2>
+        </div>
+        <button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>
+        <input id="input_file" multiple="multiple" type="file" style="display:none;">
+    </div>
+    <script>
+            $(function () {
+                $('#btn-upload').click(function (e) {
+                    e.preventDefault();
+                    $('#input_file').click();
+                });
+            });
+        </script>
+{% endblock %}

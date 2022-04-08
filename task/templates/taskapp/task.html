@@ -8,24 +8,24 @@
             <div class="justify-content-start col-7">
                 <form action="" method="get">
                     <div class="search-bar input-group mb-3">
-                        <input name="q" type="text" class="form-control rounded-pill" placeholder="Search here"
-                               aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-link" style="color: black" type="submit" name="click" value="">
+                        <input name="q" type="text" class="form-control rounded-pill" placeholder="Search here">
+                        <button class="btn btn-link" style="color: black" type="submit" name="" value="">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
-    </div>
-    <div class="container">
         <div class="row" style="margin: .5rem .7rem">
             <a href="#" style="color: black; margin-right: 1rem">Filter</a>
             <span style="margin-right: 1rem">|</span>
             <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
             <span style="margin-right: 1rem">></span>
             <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+
+            <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:upload_data' %}" value="">
+                <i class="fas fa-plus"></i>
+            </a>
         </div>
         <div class="row">
             <div class="col-3" style="margin-top: .5rem;">
