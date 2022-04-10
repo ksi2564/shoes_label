@@ -3,6 +3,7 @@ const dropArea = document.querySelector(".drag-area"),
     button = dropArea.querySelector("button");
     input = dropArea.querySelector("input");
     icon = dropArea.querySelector("i");
+    numOfFiles = dropArea.querySelector(".num-of-files");
 
 let file; //this is a global variable and we'll use it inside multiple functions
 
@@ -13,7 +14,7 @@ button.onclick = ()=>{
 input.addEventListener("change", function () {
     // 가장 먼저 골라진 단일 파일만을 저장
     file = this.files[0];
-    showFile();
+    valid_images();
     dropArea.classList.add("active");
 })
 
@@ -39,15 +40,16 @@ dropArea.addEventListener("drop", (event) => {
     event.preventDefault(); // preventing from default behaviour
     // 가장 먼저 골라진 단일 파일만을 저장
     file = event.dataTransfer.files[0];
-    showFile()
+    valid_images()
 });
 
-function showFile(){
+function valid_images(){
     let fileType = file.type;
     let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
 
     if (validExtensions.includes(fileType)) {
         icon.className = "fas fa-image"
+        numOfFiles.textContent = `${input.files.length} / 150`;
         // let fileReader = new FileReader(); // creating new FileReader object
         // fileReader.onload = () => {
         //     let fileURL = fileReader.result; // passing user file source in fileURL variable
