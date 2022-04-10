@@ -1,15 +1,11 @@
 .task_logo {
     font-family: 'Bebas Neue', cursive;
 }
-
-.pragmatic_footer {
-    text-align: center;
-    margin-top: 2rem;
+.shoes_label_footer{
+    justify-content: center;
 }
-
-.pragmatic_header {
-    text-align: center;
-    margin: 2rem 0;
+.shoes_label_footer_button{
+    justify-content: center;
 }
 
 img {
@@ -25,4 +21,6 @@ img {
     height: 40px;
     width: 40px;
     text-indent: -9999px;
+
 }
+
