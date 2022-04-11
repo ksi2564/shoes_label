@@ -3,19 +3,38 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
+    <div style="margin-left: 19.5rem; margin-top: 1rem; margin-bottom: 1rem">
         <div style="margin: 0 1.7rem">
             <h2 style="font-weight: bold;">업로드</h2>
         </div>
-        <button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>
-        <input id="input_file" multiple="multiple" type="file" style="display:none;">
     </div>
-    <script>
-            $(function () {
-                $('#btn-upload').click(function (e) {
-                    e.preventDefault();
-                    $('#input_file').click();
-                });
-            });
-        </script>
+    <div id="wrap">
+        <div class="drag-area">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <div class="num-of-files">0 / 150</div>
+            <header>파일을 여기 끌어다 놓으세요.</header>
+            <span>또는</span>
+            <button>내 컴퓨터에서 추가</button>
+            <input type="file" onchange="valid_images()" hidden multiple>
+        </div>
+    </div>
+
+
+
+    {#    <div class="container">#}
+    {#        <div style="margin: 0 1.7rem">#}
+    {#            <h2 style="font-weight: bold;">업로드</h2>#}
+    {#        </div>#}
+    {#        <button id="btn-upload" type="button" style="border: 1px solid #ddd; outline: none;">파일 추가</button>#}
+    {#        <input id="input_file" multiple="multiple" type="file" style="display:none;">#}
+    {#    </div>#}
+    {#    <script>#}
+    {#            $(function () {#}
+    {#                $('#btn-upload').click(function (e) {#}
+    {#                    e.preventDefault();#}
+    {#                    $('#input_file').click();#}
+    {#                });#}
+    {#            });#}
+    {#        </script>#}
+
 {% endblock %}
