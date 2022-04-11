@@ -10,3 +10,6 @@ def task(request):
 
 def uplaod_data(request):
     return render(request, 'taskapp/data_upload.html')
+
+def first_page(request):
+    return render(request, 'taskapp/first_page.html')
