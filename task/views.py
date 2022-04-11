@@ -13,3 +13,6 @@ def uplaod_data(request):
 
 def first_page(request):
     return render(request, 'taskapp/first_page.html')
+
+def free_trial(request):
+    return render(request, 'taskapp/free_trial.html')
