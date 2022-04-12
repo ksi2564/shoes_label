@@ -50,14 +50,6 @@ function valid_images(){
     if (validExtensions.includes(fileType)) {
         icon.className = "fas fa-image"
         numOfFiles.textContent = `${input.files.length} / 150`;
-        // let fileReader = new FileReader(); // creating new FileReader object
-        // fileReader.onload = () => {
-        //     let fileURL = fileReader.result; // passing user file source in fileURL variable
-        //     console.log(fileURL);
-        //     let imgTag = `<img src="${fileURL}" alt="">`; // creating an img tag and passing user selected file source inside src attribute
-        //     dropArea.innerHTML = imgTag; // 이미지 정보를 통해 화면에 이미지를 출력해주는 것
-        // }
-        // fileReader.readAsDataURL(file);
     } else {
         alert("지원하지 않는 Image File 형식입니다!");
         dropArea.classList.remove("active");

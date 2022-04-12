@@ -8,11 +8,13 @@ img {
     border-radius: 5px;
     display: block;
 }
+
 #wrap{
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .drag-area{
     border: 2px dashed grey;
     height: 400px;
