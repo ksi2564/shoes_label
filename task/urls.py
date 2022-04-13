@@ -9,5 +9,4 @@ urlpatterns = [
     path('data_upload/', data_upload, name='data_upload'),
     path('first_page/', first_page, name='first_page'),
     path('free_trial/', free_trial, name='free_trial'),
-
 ]
