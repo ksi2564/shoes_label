@@ -4,12 +4,11 @@
 {% include 'head.html' %}
 
 <body>
-    {% include 'header.html' %}
-    <hr>
+{% include 'header.html' %}
+<hr>
+{% block content %}
+{% endblock %}
 
-    {% block content %}
-    {% endblock %}
-
-    <hr>
+<script type="text/javascript" src="/static/script.js"></script>
 </body>
 </html>

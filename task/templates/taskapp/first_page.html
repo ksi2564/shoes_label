@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <div style="text-align:left; margin: 5rem 0 2rem 0">
+                <h2>
+                    편안하게 찾고 정확하게 알려주는 <br>
+                    신발 AI 솔루션
+                </h2>
+                <h5>
+                    고객사에게는 효율적인 업무 환경을<br>
+                    고객들에게는 편리한 쇼핑 경험을 제공합니다.
+                </h5>
+            </div>
+            <div style="text-align:left; margin: 2rem 0 .7rem 0">
+                <a class="btn text-white" type="submit" href="#" value=""
+                   style="background-color:#388E3C; padding: .8rem 0;width:13rem">영업팀 문의하기</a>
+            </div>
+            <div style="text-align:left; margin-bottom: 1rem">
+                <a class="btn btn btn-outline-success" type="submit" href="{% url 'taskapp:free_trial' %}" value=""
+                   style="padding: .8rem 0; width:13rem">무료 체험 시작하기</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
