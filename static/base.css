@@ -58,3 +58,15 @@ img {
     border-radius: .3rem;
     cursor: pointer;
 }
+
+.login {
+    border: 2px dashed grey;
+    height: 400px;
+    width: 600px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
