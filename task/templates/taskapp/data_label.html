@@ -3,23 +3,23 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
 
-        </div>
-        <div class="row" style="margin: .5rem .7rem">
+    </div>
+    <div class="row" style="margin: .5rem .7rem">
 
-            <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
-            <span style="margin-right: 1rem">></span>
-            <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+        <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
+        <span style="margin-right: 1rem">></span>
+        <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
 
-            <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:upload_data' %}" value="">
-                <i class="fas fa-plus"></i>
-            </a>
-        </div>
-<h1>
+        <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:upload_data' %}">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+    <h1>
         <div class="row" style="margin: .5rem">
-            <div class=scroll style=overflow-y:hidden;overflow-y:hidden> </div>
+            <div class=scroll style=overflow-y:hidden;overflow-y:hidden></div>
 
             <div class="col-2" style="margin-top: .5rem;">
                 <div class="card">
@@ -48,44 +48,40 @@
             </div>
 
 
-
-        <div class="navigation" style="padding: .1rem 1.0rem;
+            <div class="navigation" style="padding: .1rem 1.0rem;
         margin-top: .5rem;">
-            <center>
-            <a type="button" class="btn-next" href="{% url 'taskapp:img_btn' %}" value=""
+                <center>
+                    <a type="button" class="btn-next" href="{% url 'taskapp:img_btn' %}"
 
-               style="transform: translateY(100%); color: #00a000;">
+                       style="transform: translateY(100%); color: #00a000;">
 
-                    <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
 
-            </a>
-            </center>
+                    </a>
+                </center>
 
-    </div>
-
-
-                    </div>
-
-</h1>
-        <hr>
-<h2>
+            </div>
 
 
+        </div>
 
-    <div class="col-6" style="margin-top: .5rem;">
+    </h1>
+    <hr>
+    <h2>
+
+
+        <div class="col-6" style="margin-top: .5rem;">
             <div id="testImg">
                 <div id="circle">
-         <img src="{% static 'images/5.png' %}" alt="..." loading="lazy">
-        <button class="btn1" type="button" onclick="javascript:sensorBtnClick('btn1');">포인트제거</button>
-        <button class="btn2" type="button" onclick="javascript:sensorBtnClick('btn2');">업로드 정보</button>
+                    <img src="{% static 'images/5.png' %}" alt="..." loading="lazy">
+                    <button class="btn1" type="button" onclick="javascript:sensorBtnClick('btn1');">포인트제거</button>
+                    <button class="btn2" type="button" onclick="javascript:sensorBtnClick('btn2');">업로드 정보</button>
                 </div>
             </div>
 
 
-
-
-    </div>
-            <style>
+        </div>
+        <style>
 
 input[type="testImg"] {
   width: 36px;
@@ -124,57 +120,127 @@ circle {
 }
 
 
-</style>
 
 
-    <style>
+
+
+
+
+
+
+        </style>
+
+
+        <style>
 img {
   float: left;
 }
-</style>
-
-<body>
-<img src="vans.png" alt="" width="" height="">
-</body>
 
 
-    <div style="margin: 2rem; padding-left: 4rem;">
-        <div class="category-type" data-enabled-slide="false">
-            <div class="slick-slider slick-initialized">
-                <div class="slick-list">
-                    <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false" style="outline: none;">
-                        <div>
-                            <a class="tab pointer-tag selected" style="font-size: 1rem; margin: 2rem; display: inline-block;">신발</a>
+
+
+
+
+
+
+        </style>
+
+
+        <div style="margin: 2rem; padding-left: 4rem;">
+            <div class="category-type" data-enabled-slide="false">
+                <div class="slick-slider slick-initialized">
+                    <div class="slick-list">
+                        <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1"
+                             aria-hidden="false" style="outline: none;">
+                            <div>
+                                <a class="tab pointer-tag selected"
+                                   style="font-size: 1rem; margin: 2rem; display: inline-block;">신발</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
+
+
         </div>
-        <hr>
+        <div>
 
-
-    </div>
-<div>
             <div style="font-size: 1rem; margin: 2rem; display: inline-block; font-weight: bold;">
-            <span>인식한 아이템</span>
+
+                <span>인식한 아이템</span>
+                <div style="margin: 1rem;" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text" style="padding-right: 0.3rem;">운동화
+                            <input style="margin: 0.5rem;" type="checkbox"
+                                   aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-        <div style="font-size: 1rem; margin: 2rem; display: inline-block">
-            <span style="background: #cdedb0; width: 200px; height: 50px; margin: 1rem; padding: 10px;">운동화</span>
-        </div>
+        <div style="margin: 2rem; font-size: 1rem; display: inline;">
+            <span style="font-weight: bold;">AI 속성 태그</span>
 
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;────────────────────</div>
 
-</div>
-    <div style="margin: 2rem; font-size: 1rem; display: inline;">
-        <span style="font-weight: bold;">AI 속성 태그</span>
-
-            <div style="margin: 2rem; font-size: .8rem; display: block">
+            <div style="margin: .6rem; font-size: .8rem; display: block; float: left;">
                 <span style="padding: 2rem;">카테고리</span>
             </div>
-                <button class="btn2" type="button" onclick="javascript:sensorBtnClick('btn2');">운동화</button>
-    </div>
+            <div class="dropdown" style="display: block; margin-left: 2rem;">
+                <div style="margin: 2rem; display: inline;">
+                    <button class="btn btn-link dropdown-toggle" style="color: black;" type="button"
+                            id="dropdownMenuButton1"
+                            data-toggle="dropdown" aria-expanded="false">
+                        운동화
+                    </button>
 
-</h2>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">로퍼</a>
+                        <a class="dropdown-item" href="#">부츠/워커</a>
+                        <a class="dropdown-item" href="#">샌들</a>
+                        <a class="dropdown-item" href="#">슬리퍼</a>
+                        <a class="dropdown-item" href="#">운동화</a>
+                        <a class="dropdown-item" href="#">정장구두</a>
+                        <a class="dropdown-item" href="#">펌프스</a>
 
-    </div>
+                    </div>
+                </div>
+            </div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;────────────────────</div>
+
+            <div style="margin: .6rem; font-size: .8rem; display: block; float: left;">
+                <span style="padding: 2rem;">앞코모양</span>
+            </div>
+            <div class="dropdown" style="display: block; margin-left: 2rem;">
+                <div style="margin: 2rem; display: inline;">
+                    <button class="btn btn-link dropdown-toggle" style="color: black;" type="button"
+                            id="dropdownMenuButton2"
+                            data-toggle="dropdown" aria-expanded="false">
+                        라운드토
+                    </button>
+
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">라운드토</a>
+                        <a class="dropdown-item" href="#">스퀘어토</a>
+                        <a class="dropdown-item" href="#">아몬드토</a>
+                        <a class="dropdown-item" href="#">오픈토</a>
+                        <a class="dropdown-item" href="#">포인티토</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </h2>
+
+</div>
 {% endblock %}
 
