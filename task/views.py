@@ -27,5 +27,5 @@ def login(request):
     return render(request, 'taskapp/login.html')
 
 
-def uplaod_data(request):
-    return render(request, 'taskapp/data_upload.html')
+def data_label(request):
+    return render(request, 'taskapp/data_label.html')
