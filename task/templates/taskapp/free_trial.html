@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row" style="padding: 2rem 15rem">
+        <div class="col-6">
+            <h3 style="color: #388E3C; text-align:center">
+                OLIVELY STUDIO
+            </h3>
+            <p style="text-align:center; font-size:14px; margin-bottom:2rem">간단하게 가입 정보를 입력하고 무료로 체험해보세요</p>
+            <div class="card" style="margin: 0 4rem; border-color: #388E3C">
+                <div class="card-body">
+                    <p style="font-size:20px"><i class="far fa-check-circle"></i> TAGGER </p>
+                    <p class="card-text" style="font-weight:bold; padding:.3rem 2rem">상품 속성 정보 자동 태깅<br>
+                        의류, 신발, 가방, 모자, 주얼리,<br>
+                        잡화 카테고리 지원<br>
+                        메월 100건 제공되는 STUDIO<br>
+                        무료 체험</p>
+                    <p style="font-size:20px"><i class="far fa-check-circle"></i> LENS <strong>Visual
+                        recommendation</strong></p>
+                    <p class="card-text" style="font-weight:bold; padding:.3rem 2rem">
+                        입고된 상품들의 유사도로 아이템을<br>
+                        자동으로 추천
+                    </p>
+                    <p style="font-size:20px"><i class="far fa-check-circle"></i> LENS <strong>Search</strong></p>
+                    <p class="card-text" style="font-weight:bold; padding:.3rem 2rem">
+                        이미지를 업로드해서 상품을<br>
+                        빠르게 검색
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-6">
+
+
+            <form method="get" action="" style="background-color:rgba(56, 142, 60,0.7) ; padding: 1rem 0;color:white">
+                <div class="form-group" style="padding:1rem 2rem .5rem 2rem;">
+                    <label for="">이름 *</label>
+                    <input type="text" class="form-control" id="">
+                </div>
+                <div class="form-group" style="padding:0 2rem .5rem 2rem">
+                    <label for="">이메일 *</label>
+                    <input type="email" class="form-control" id="">
+                </div>
+                <div class="form-group" style="padding:0 2rem .5rem 2rem">
+                    <label for="">회사명 *</label>
+                    <input type="email" class="form-control" id="">
+                </div>
+                <div style="padding:0 2rem .5rem 2rem">사용하고 싶은 제품 *</div>
+                <div class="form-check" style="padding:0 2rem .5rem 3rem">
+                    <input type="checkbox" class="form-check-input" id="">
+                    <label class="form-check-label" for="">TAGGER</label>
+                </div>
+                <div class="form-check" style="padding:0 2rem .5rem 3rem">
+                    <input type="checkbox" class="form-check-input" id="">
+                    <label class="form-check-label" for="">LENS Visual recommendation</label>
+                </div>
+                <div class="form-check" style="padding:0 2rem .5rem 3rem">
+                    <input type="checkbox" class="form-check-input" id="">
+                    <label class="form-check-label" for="">LENS Camera Search</label>
+                </div>
+                <hr style="width: 90%; height: .05rem; background-color:white">
+                <div class="form-check" style="padding:0 2rem .5rem 3rem">
+                    <input type="checkbox" class="form-check-input" id="">
+                    <label class="form-check-label" for="">서비스 이용 약관과 개인 정보 보호 정책에 동의합니다.</label>
+                </div>
+                <div style="text-align:center;margin:1rem">
+                    <button type="submit" class="btn text-white" style="background-color:#388E3C;">무료 체험 시작하기</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

@@ -8,12 +8,15 @@ img {
     border-radius: 5px;
     display: block;
 }
-#wrap{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+
+#wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.drag-area{
+
+.drag-area {
     border: 2px dashed grey;
     height: 400px;
     width: 600px;
@@ -23,23 +26,28 @@ img {
     justify-content: center;
     flex-direction: column;
 }
-.drag-area.active{
+
+.drag-area.active {
     border: 2px solid grey;
 }
-.drag-area .icon{
+
+.drag-area .icon {
     font-size: 2rem;
     color: #8BC34A;
 }
-.drag-area header{
+
+.drag-area header {
     font-size: 1.5rem;
     font-weight: bold;
 }
-.drag-area span{
+
+.drag-area span {
     font-size: 1.3rem;
     font-weight: bold;
     margin: .6rem 0 .9rem 0;
 }
-.drag-area button{
+
+.drag-area button {
     padding: .6rem 1.3rem;
     font-size: 1.2rem;
     font-weight: bold;
@@ -51,8 +59,14 @@ img {
     cursor: pointer;
 }
 
-
-hr {
-    width: 50%
+.login {
+    border: 2px dashed grey;
+    height: 400px;
+    width: 600px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
