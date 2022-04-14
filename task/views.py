@@ -18,3 +18,14 @@ def first_page(request):
 
 def free_trial(request):
     return render(request, 'taskapp/free_trial.html')
+
+def plustask(request):
+    return render(request, 'taskapp/plustask.html')
+
+
+def login(request):
+    return render(request, 'taskapp/login.html')
+
+
+def uplaod_data(request):
+    return render(request, 'taskapp/data_upload.html')
