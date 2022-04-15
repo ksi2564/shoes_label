@@ -23,9 +23,9 @@
         <div class="row" style="margin: .5rem .7rem">
             <a href="#" style="color: black; margin-right: 1rem">Filter</a>
             <span style="margin-right: 1rem">|</span>
-            <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
+            <a href="{% url 'taskapp:plustask' %}" style="color: black; margin-right: 1rem">내 작업실</a>
             <span style="margin-right: 1rem">></span>
-            <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+            <a href="{% url 'taskapp:task' %}" style="color: black; margin-right: 1rem">라벨링 데이터</a>
 
             <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:data_upload' %}" value="">
                 <i class="fas fa-plus"></i>
@@ -34,7 +34,10 @@
         <div class="row">
             <div class="col-3" style="margin-top: .5rem;">
                 <div class="card">
-                    <img src="{% static 'images/1.png' %}" alt="..." loading="lazy">
+                    <a class="btn p-0" type="submit" href="{% url 'taskapp:data_label' %}"
+                       value="">
+                    <img src="{% static 'images/5.png' %}" alt="..." loading="lazy">
+                    </a>
                 </div>
             </div>
             <div class="col-3" style="margin-top: .5rem;">
@@ -54,7 +57,7 @@
             </div>
             <div class="col-3" style="margin-top: .5rem;">
                 <div class="card">
-                    <img src="{% static 'images/5.png' %}" alt="..." loading="lazy">
+                    <img src="{% static 'images/1.png' %}" alt="..." loading="lazy">
                 </div>
             </div>
             <div class="col-3" style="margin-top: .5rem;">

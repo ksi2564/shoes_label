@@ -49,13 +49,13 @@ img {
 
 .drag-area button {
     padding: .6rem 1.3rem;
-    font-size: 1.2rem;
+    font-size: .8rem;
     font-weight: bold;
     border: none;
     outline: none;
-    background: #388E3C;
-    color: #fff;
-    border-radius: .3rem;
+    background: #fff;
+    color: #817d7d;
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -68,4 +68,20 @@ img {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.upload {
+    padding: 43% 0;
+    width: 100%;
+    border-radius: 5px;
+    display: block;
+}
+
+.upload-btn {
+    padding: .6rem 5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    background: #388E3C;
 }
