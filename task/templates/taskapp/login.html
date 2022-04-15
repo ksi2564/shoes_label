@@ -10,7 +10,7 @@
 <body>
 <div class="wrap">
     <div class="login">
-        <a class="navbar-brand mb-0 h1" href="{% url 'taskapp:first_page' %}"
+        <a class="navbar-brand mb-0 h1" href="{% url 'first_page' %}"
            style="color: #388E3C; font-size: 2rem; font-weight: 900;">OLIVELY STUDIO</a>
         <div class="login_id" style="color: #388E3C">
             <h4>E-mail</h4>
@@ -36,7 +36,7 @@
         <div class="col-3" style="margin-bottom: 0.2rem;">
         </div>
         <div class="forgot_pw">
-            <a href="#" style="color: #388E3C">계정이 없으신가요? 계정만들기</a>
+            <a href="{% url 'free_trial' %}" style="color: #388E3C">계정이 없으신가요? 계정만들기</a>
         </div>
     </div>
 </div>

@@ -9,11 +9,13 @@
         </div>
         <div class="row" style="margin: .5rem .7rem">
 
-            <a href="#" style="color: black; margin-right: 1rem">내 작업실</a>
+            <a href="{% url 'taskapp:plustask' %}" style="color: black; margin-right: 1rem">내 작업실</a>
             <span style="margin-right: 1rem">></span>
-            <a href="#" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+            <a href="{% url 'taskapp:task' %}" style="color: black; margin-right: 1rem">라벨링 데이터</a>
+            <span style="margin-right: 1rem">></span>
+            <a href="{% url 'taskapp:data_label' %}" style="color: black; margin-right: 1rem">라벨링 작업실</a>
 
-            <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:upload_data' %}">
+            <a class="btn btn-outline-success btn-sm" type="submit" href="{% url 'taskapp:data_upload' %}">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -51,7 +53,7 @@
                 <div class="navigation" style="padding: .1rem 1.0rem;
         margin-top: .5rem;">
                     <center>
-                        <a type="button" class="btn-next" href="{% url 'taskapp:img_btn' %}"
+                        <a type="button" class="btn-next" href="#"
 
                            style="transform: translateY(100%); color: #00a000;">
 
