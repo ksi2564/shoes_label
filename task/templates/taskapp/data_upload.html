@@ -1,27 +1,43 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div style="margin: 1rem 0 1rem 15rem">
-            <div style="margin: 0 1.7rem">
-                <h2 style="font-weight: bold;">업로드</h2>
-            </div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+        <div class="mb-4">
+            <h4>업로드</h4>
         </div>
-        <div id="wrap">
-            <div class="drag-area">
-                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                <div class="num-of-files">0 / 150</div>
-                <header>파일을 여기 끌어다 놓으세요.</header>
-                <span>또는</span>
-                <button>내 컴퓨터에서 추가</button>
-                <input type="file" onchange="valid_images()" hidden multiple>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-2 mb-5">
-            <button type="button" class="btn btn-success btn-lg upload-btn">업로드</button>
-        </div>
+        <form action="{% url 'taskapp:data_upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-success upload-btn col-6 mt-3">
+        </form>
     </div>
+{#    <div class="container">#}
+{#        <div style="margin: 1rem 0 1rem 15rem">#}
+{#            <div style="margin: 0 1.7rem">#}
+{#                <h2 style="font-weight: bold;">업로드</h2>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div id="wrap">#}
+{#            <div class="drag-area">#}
+{#                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>#}
+{#                <div class="num-of-files">0 / 150</div>#}
+{#                <header>파일을 여기 끌어다 놓으세요.</header>#}
+{#                <span>또는</span>#}
+{#                <button>내 컴퓨터에서 추가</button>#}
+{#                <input type="file" onchange="valid_images()" hidden multiple>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="row justify-content-center mt-2 mb-5">#}
+{#            <form action="{% url 'taskapp:data_upload' %}" method="post" enctype="multipart/form-data">#}
+{#                {% csrf_token %}#}
+{#                {% bootstrap_form form %}#}
+{#                <input type="submit" class="btn btn-success upload-btn mt-3" value="업로드">#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+
 
 {% endblock %}
