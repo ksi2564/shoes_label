@@ -10,7 +10,8 @@
         </div>
         <form action="{% url 'taskapp:data_upload' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form form %}
+{#            {% bootstrap_form form %}#}
+            <input name='shoes_img' type="file" multiple>
             <input type="submit" class="btn btn-success upload-btn col-6 mt-3">
         </form>
     </div>

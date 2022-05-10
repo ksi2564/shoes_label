@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bootstrap4',
-    'task',
+    # 'task',
+    'photo',
 ]
 
 MIDDLEWARE = [
