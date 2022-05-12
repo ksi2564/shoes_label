@@ -16,13 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from task.views import first_page, login, free_trial
+# from task.views import first_page, login, free_trial
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('task/', include('task.urls')),
-
-    path('', first_page, name='first_page'),
-    path('free_trial/', free_trial, name='free_trial'),
-    path('login/', login, name='login'),
-]
+                  path('admin/', admin.site.urls),
+                  # path('task/', include('task.urls')),
+                  path('', include('photo.urls')),
+              ]
