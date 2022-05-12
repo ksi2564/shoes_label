@@ -16,12 +16,15 @@
                 <header>파일을 여기 끌어다 놓으세요.</header>
                 <span>또는</span>
                 <button>내 컴퓨터에서 추가</button>
-                <input type="file" onchange="valid_images()" hidden multiple>
+                <input type="file" name="hello_world_input" onchange="valid_images()" hidden multiple>
             </div>
         </div>
+
+
         <div class="row justify-content-center mt-2 mb-5">
-            <button type="button" class="btn btn-success btn-lg upload-btn">업로드</button>
+            <button type="button" name="hello_world_input" data-function="submit" class="btn btn-success btn-lg upload-btn">업로드</button>
         </div>
+
     </div>
 
 {% endblock %}

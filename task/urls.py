@@ -9,4 +9,7 @@ urlpatterns = [
     path('mytask/', task, name='task'),
     path('mytask/data_upload/', data_upload, name='data_upload'),
     path('mytask/data_label/', data_label, name='data_label'),
+
 ]
+
+

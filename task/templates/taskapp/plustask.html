@@ -44,6 +44,10 @@
                     <a class="btn p-0" type="submit" href="{% url 'taskapp:task' %}"
                        value="">
                     <img src="{% static 'images/2.png' %}" alt="..." loading="lazy">
+                          {% if post.image %}
+                            <img src="{{post.image.url}}">
+                        {% endif %}
+                        {{ hello_world_list }}
                     </a>
                 </div>
             </div>
