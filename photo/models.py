@@ -47,3 +47,5 @@ class LabeledPhoto(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+
