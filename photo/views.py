@@ -3,18 +3,12 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm
 from photo.models import Photo, TopCategory, SubCategory
+from django.shortcuts import redirect,render
 
 
 class PhotoList(ListView):
     model = Photo
     template_name = 'photo/photo_list.html'
-
-
-class PhotoCreate(CreateView):
-    model = Photo
-    form_class = ShoesPhotoForm
-    template_name = 'photo/photo_create.html'
-    success_url = '/'
 
 
 class PhotoUpdate(UpdateView):
@@ -49,3 +43,17 @@ class SubCategoryCreate(CreateView):
     form_class = SubCategoryForm
     template_name = 'category/subcategory_create.html'
     success_url = '/subcategory/create/'
+
+def addPhoto(request):
+    if request.method == 'POST':
+        data = request.POST
+        image = request.FILES.getlist('image')
+
+        for image in image:
+            photo = Photo.objects.create(
+                image=image,
+            )
+
+        return redirect('/')
+
+    return render(request, 'photo/photo_create.html')
