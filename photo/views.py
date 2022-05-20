@@ -26,9 +26,7 @@ class PhotoDelete(DeleteView):
 
 class PhotoDetail(DetailView):
     model = Photo
-    form_class = ShoesPhotoForm
     template_name = 'photo/photo_detail.html'
-    success_url = '/'
 
 
 class TopCategoryCreate(CreateView):
@@ -71,3 +69,26 @@ def labelPhoto(request, pk):
 
         return redirect('/')
     return render(request, 'label/label.html')
+
+
+class LabeledPhotoList(ListView):
+    model = LabeledPhoto
+    template_name = 'label/labeled_photo_list.html'
+
+
+class LabeledPhotoDetail(DetailView):
+    model = LabeledPhoto
+    template_name = 'label/labeled_photo_detail.html'
+
+
+class LabeledPhotoUpdate(UpdateView):
+    model = LabeledPhoto
+    form_class = LabeledPhotoForm
+    template_name = 'label/labeled_photo_update.html'
+    success_url = '/labeled/list'
+
+
+class LabeledPhotoDelete(DeleteView):
+    model = LabeledPhoto
+    template_name = 'label/labeled_photo_delete.html'
+    success_url = '/labeled/list'
