@@ -4,7 +4,7 @@ from django.urls import path
 
 from photo.views import PhotoList, PhotoDetail, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
     SubCategoryCreate, addPhoto, labelPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete
+    LabeledPhotoDelete, CategoryView
 
 app_name = "photo"
 
