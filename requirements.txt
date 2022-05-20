@@ -9,3 +9,4 @@ Pillow==9.1.0
 soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
+django-mptt~=0.13.4

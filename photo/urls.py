@@ -2,9 +2,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from photo.views import PhotoList, PhotoDetail, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
+from photo.views import PhotoList, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
     SubCategoryCreate, addPhoto, labelPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete, CategoryView
+    LabeledPhotoDelete
 
 app_name = "photo"
 

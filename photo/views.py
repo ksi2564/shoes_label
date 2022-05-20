@@ -102,7 +102,7 @@ class LabeledPhotoDelete(DeleteView):
 
 class CategoryView(View):
     template_name = 'category/category.html'
+
     def get(self, request):
         context = {'categories': Category.objects.all()}
-
         return render(request, self.template_name, context)
