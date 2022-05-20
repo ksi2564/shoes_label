@@ -2,8 +2,9 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm
-from photo.models import Photo, TopCategory, SubCategory
+from photo.models import Photo, TopCategory, SubCategory, Category
 from django.shortcuts import redirect,render
+from django.views.generic import View
 
 
 class PhotoList(ListView):
@@ -18,6 +19,7 @@ class PhotoUpdate(UpdateView):
     success_url = '/'
 
 
+
 class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
@@ -26,9 +28,11 @@ class PhotoDelete(DeleteView):
 
 class PhotoDetail(DetailView):
     model = Photo
-    form_class = ShoesPhotoForm
-    template_name = 'photo/photo_detail.html'
-    success_url = '/'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PhotoDetail, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class TopCategoryCreate(CreateView):
@@ -57,3 +61,11 @@ def addPhoto(request):
         return redirect('/')
 
     return render(request, 'photo/photo_create.html')
+
+
+class CategoryView(View):
+    template_name = 'category/category.html'
+    def get(self, request):
+        context = {'categories': Category.objects.all()}
+
+        return render(request, self.template_name, context)
