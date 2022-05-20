@@ -37,15 +37,13 @@ class SubCategory(models.Model):
 
 
 class LabeledPhoto(models.Model):
-    labeled_image = models.ForeignKey(Photo, on_delete=models.PROTECT, related_name='labeled_image')
+    labeled_image = models.OneToOneField(Photo, on_delete=models.PROTECT, related_name='labeled_image')
     top_category = models.CharField(max_length=64)
     sub_category = models.CharField(max_length=64)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.labeled_image
+        return str(self.labeled_image)
 
     class Meta:
         ordering = ['-created']
-
-

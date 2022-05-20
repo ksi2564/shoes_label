@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-xl-4 col-md-4">
+                <div class="card" style="width: 23rem;">
+                    <img src="{{ labeled.image.url }}" class="card-img-top" alt="">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">수정일 : {{ labeled.updated }}</li>
+                        <li class="list-group-item">생성일 : {{ labeled.created }}</li>
+                    </ul>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <label for="top">상위 카테고리</label>
+                    <select id="top" name="top">
+                        <option value="운동화">운동화</option>
+                        <option value="패션슈즈">패션슈즈</option>
+                        <option value="구두&부츠">구두&부츠</option>
+                        <option value="샌들&슬리퍼">샌들&슬리퍼</option>
+                        <option value="작업화&특수화">작업화&특수화</option>
+                    </select>
+                    <br>
+                    <label for="sub">하위 카테고리</label>
+                    <select id="sub" name="sub">
+                        <option value="러닝화">러닝화</option>
+                        <option value="아웃도어">아웃도어</option>
+                        <option value="농구화">농구화</option>
+                        <option value="골프화">골프화</option>
+                        <option value="축구화">축구화</option>
+                        <option value="배드민턴화">배드민턴화</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="저장" class="btn btn-primary">
+                </form>
+                <div>
+                    <a href="{% url 'photo:update' labeled.id %}" class="card-link">수정하기</a>
+                    <a href="{% url 'photo:delete' labeled.id %}" class="card-link">삭제하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

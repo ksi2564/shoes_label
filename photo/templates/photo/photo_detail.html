@@ -17,6 +17,28 @@
                         <li class="list-group-item">수정일 : {{ object.updated }}</li>
                         <li class="list-group-item">생성일 : {{ object.created }}</li>
                     </ul>
+                    <p>상위 카테고리</p>
+                    <div class="mb-3">
+                        <select>
+                            <option value="운동화">운동화</option>
+                            <option value="패션슈즈">패션슈즈</option>
+                            <option value="구두&부츠">구두&부츠</option>
+                            <option value="샌들&슬리퍼">샌들&슬리퍼</option>
+                            <option value="작업화&특수화">작업화&특수화</option>
+                        </select>
+                    </div>
+                    <p>하위 카테고리</p>
+                    <div class="mb-3">
+                        <select>
+                            <option value="러닝화">러닝화</option>
+                            <option value="아웃도어">아웃도어</option>
+                            <option value="농구화">농구화</option>
+                            <option value="골프화">골프화</option>
+                            <option value="축구화">축구화</option>
+                            <option value="배드민턴화">배드민턴화</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="저장" class="btn btn-primary">
                 </div>
                 <div>
                     <a href="{% url 'photo:update' object.id %}" class="card-link">수정하기</a>

@@ -1,9 +1,9 @@
 # Create your views here.
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm
-from photo.models import Photo, TopCategory, SubCategory
-from django.shortcuts import redirect,render
+from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
+from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto
+from django.shortcuts import redirect, render
 
 
 class PhotoList(ListView):
@@ -35,7 +35,7 @@ class TopCategoryCreate(CreateView):
     model = TopCategory
     form_class = TopCategoryForm
     template_name = 'category/topcategory_create.html'
-    success_url = '/'
+    success_url = '/topcategory/create/'
 
 
 class SubCategoryCreate(CreateView):
@@ -44,16 +44,30 @@ class SubCategoryCreate(CreateView):
     template_name = 'category/subcategory_create.html'
     success_url = '/subcategory/create/'
 
+
 def addPhoto(request):
     if request.method == 'POST':
-        data = request.POST
         image = request.FILES.getlist('image')
 
         for image in image:
-            photo = Photo.objects.create(
-                image=image,
-            )
+            Photo.objects.create(image=image)
 
         return redirect('/')
 
     return render(request, 'photo/photo_create.html')
+
+
+def labelPhoto(request, pk):
+    if request.method == 'GET':
+        labeled = Photo.objects.get(id=pk)
+        return render(request, 'label/label.html', {'labeled': labeled})
+
+    if request.method == 'POST':
+        new_labeled = LabeledPhoto()
+        new_labeled.labeled_image = Photo.objects.get(id=pk)
+        new_labeled.top_category = request.POST.get('top')
+        new_labeled.sub_category = request.POST.get('sub')
+        new_labeled.save()
+
+        return redirect('/')
+    return render(request, 'label/label.html')
