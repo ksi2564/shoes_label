@@ -21,7 +21,7 @@ urlpatterns = [
     path('labeled/delete/<int:pk>', LabeledPhotoDelete.as_view(), name='labeled_delete'),
 
     path('topcategory/create/', TopCategoryCreate.as_view(), name='top-category_create'),
-    path('subcategory/create/', SubCategoryCreate.as_view(), name='top-category_create'),
+    path('subcategory/create/', SubCategoryCreate.as_view(), name='sub-category_create'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

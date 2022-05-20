@@ -4,7 +4,6 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
 from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, Category
 from django.shortcuts import redirect, render
-from django.views.generic import View
 
 
 class PhotoList(ListView):
@@ -28,11 +27,6 @@ class PhotoDelete(DeleteView):
 class PhotoDetail(DetailView):
     model = Photo
     template_name = 'photo/photo_detail.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(PhotoDetail, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        return context
 
 
 class TopCategoryCreate(CreateView):
@@ -98,11 +92,3 @@ class LabeledPhotoDelete(DeleteView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_delete.html'
     success_url = '/labeled/list'
-
-
-class CategoryView(View):
-    template_name = 'category/category.html'
-
-    def get(self, request):
-        context = {'categories': Category.objects.all()}
-        return render(request, self.template_name, context)
