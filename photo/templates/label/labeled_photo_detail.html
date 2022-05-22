@@ -14,17 +14,17 @@
             <div class="col-6">
                 <div class="card">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">수정일 : {{ object.labeled_image.updated }}</li>
-                        <li class="list-group-item">생성일 : {{ object.labeled_image.created }}</li>
+                        <li class="list-group-item">생성일 : {{ object.created }}</li>
+                        <li class="list-group-item">상위 카테고리 : {{ object.top_category }}</li>
+                        <li class="list-group-item">하위 카테고리 : {{ object.sub_category }}</li>
+                        <li class="list-group-item">
+                            <a href="{% url 'photo:labeled_update' object.id %}" class="card-link">수정하기</a>
+                            <a href="{% url 'photo:labeled_delete' object.id %}" class="card-link">삭제하기</a>
+                        </li>
                     </ul>
-                    상위 카테고리 :
-                    {{ object.top_category }}<br>
-                    하위 카테고리 :
-                    {{ object.sub_category }}<br>
                 </div>
                 <div>
-                    <a href="{% url 'photo:labeled_update' object.id %}" class="card-link">수정하기</a>
-                    <a href="{% url 'photo:labeled_delete' object.id %}" class="card-link">삭제하기</a>
+
                 </div>
             </div>
         </div>

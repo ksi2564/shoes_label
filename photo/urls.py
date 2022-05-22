@@ -4,12 +4,13 @@ from django.urls import path
 
 from photo.views import PhotoList, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
     SubCategoryCreate, addPhoto, labelPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete
+    LabeledPhotoDelete, first_page
 
 app_name = "photo"
 
 urlpatterns = [
-    path('', PhotoList.as_view(), name='index'),
+    path('', first_page, name='index'),
+    path('list/', PhotoList.as_view(), name='list'),
     path('create/', addPhoto, name='create'),
     path('update/<int:pk>/', PhotoUpdate.as_view(), name='update'),
     path('delete/<int:pk>/', PhotoDelete.as_view(), name='delete'),
