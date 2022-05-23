@@ -20,19 +20,22 @@ class PhotoUpdate(UpdateView):
     model = Photo
     form_class = ShoesPhotoForm
     template_name = 'photo/photo_update.html'
-    success_url = '/'
+    success_url = '/list/'
 
 
 class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
-    success_url = '/'
+    success_url = '/list/'
 
 
 def labelPhoto(request, pk):
     if request.method == 'GET':
         labeled = Photo.objects.get(id=pk)
-        return render(request, 'photo/photo_detail.html', {'labeled': labeled})
+        subcategories = SubCategory.objects.all()
+        topcategories = TopCategory.objects.all()
+        return render(request, 'photo/photo_detail.html',
+                      {'labeled': labeled, 'subcategories': subcategories, 'topcategories': topcategories})
 
     elif request.method == 'POST':
         new_labeled = LabeledPhoto()
@@ -75,7 +78,7 @@ def addPhoto(request):
         for image in image:
             Photo.objects.create(image=image)
 
-        return redirect('/')
+        return redirect('/list/')
 
     return render(request, 'photo/photo_create.html')
 

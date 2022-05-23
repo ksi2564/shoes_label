@@ -21,21 +21,16 @@
                                 {% csrf_token %}
                                 <label for="top">상위 카테고리</label>
                                 <select id="top" name="top">
-                                    <option value="운동화">운동화</option>
-                                    <option value="패션슈즈">패션슈즈</option>
-                                    <option value="구두&부츠">구두&부츠</option>
-                                    <option value="샌들&슬리퍼">샌들&슬리퍼</option>
-                                    <option value="작업화&특수화">작업화&특수화</option>
+                                    {% for topcategory in topcategories %}
+                                        <option value="{{ topcategory }}">{{ topcategory }}</option>
+                                    {% endfor %}
                                 </select>
                                 <br>
                                 <label for="sub">하위 카테고리</label>
                                 <select id="sub" name="sub">
-                                    <option value="러닝화">러닝화</option>
-                                    <option value="아웃도어">아웃도어</option>
-                                    <option value="농구화">농구화</option>
-                                    <option value="골프화">골프화</option>
-                                    <option value="축구화">축구화</option>
-                                    <option value="배드민턴화">배드민턴화</option>
+                                    {% for subcategory in subcategories %}
+                                        <option value="{{ subcategory.sub_category }}">{{ subcategory.sub_category }}</option>
+                                    {% endfor %}
                                 </select>
                                 <br>
                                 <input type="submit" value="저장" class="btn btn-primary">
