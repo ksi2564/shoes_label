@@ -40,8 +40,8 @@ def labelPhoto(request, pk):
     elif request.method == 'POST':
         new_labeled = LabeledPhoto()
         new_labeled.labeled_image = Photo.objects.get(id=pk)
-        new_labeled.top_category = request.POST.get('top')
-        new_labeled.sub_category = request.POST.get('sub')
+        new_labeled.topcategory = request.POST.get('top')
+        new_labeled.subcategory = request.POST.get('sub')
         new_labeled.save()
 
         labeled = Photo.objects.get(id=pk)

@@ -20,16 +20,16 @@
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <label for="top">상위 카테고리</label>
-                                <select id="top" name="top">
+                                <select id="top" name="top" style="width:10rem">
                                     {% for topcategory in topcategories %}
-                                        <option value="{{ topcategory }}">{{ topcategory }}</option>
+                                        <option id="{{ topcategory }}" value="{{ topcategory }}">{{ topcategory }}</option>
                                     {% endfor %}
                                 </select>
                                 <br>
                                 <label for="sub">하위 카테고리</label>
-                                <select id="sub" name="sub">
+                                <select id="sub" name="sub" style="width:10rem">
                                     {% for subcategory in subcategories %}
-                                        <option value="{{ subcategory.sub_category }}">{{ subcategory.sub_category }}</option>
+                                        <option id="{{ subcategory.topcategory }}" value="{{ subcategory }}">{{ subcategory }}</option>
                                     {% endfor %}
                                 </select>
                                 <br>

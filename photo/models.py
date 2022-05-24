@@ -17,28 +17,29 @@ class Photo(models.Model):
 
 
 class TopCategory(models.Model):
-    top_category = models.CharField(max_length=64)
+    topcategory = models.CharField(max_length=64)
 
     def __str__(self):
-        return self.top_category
+        return self.topcategory
 
 
 class SubCategory(models.Model):
-    top_category = models.ForeignKey(TopCategory, on_delete=models.CASCADE, related_name='top')
-    sub_category = models.CharField(max_length=64)
+    topcategory = models.ForeignKey(TopCategory, on_delete=models.CASCADE)
+    subcategory = models.CharField(max_length=64)
 
     def __str__(self):
-        return self.sub_category
+        return self.subcategory
 
     class Meta:
-        ordering = ['top_category']
+        ordering = ['topcategory']
 
 
 class LabeledPhoto(models.Model):
     labeled_image = models.OneToOneField(Photo, on_delete=models.PROTECT, related_name='labeled_image')
-    top_category = models.CharField(max_length=64)
-    sub_category = models.CharField(max_length=64)
+    topcategory = models.CharField(max_length=64)
+    subcategory = models.CharField(max_length=64)
     created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.labeled_image)

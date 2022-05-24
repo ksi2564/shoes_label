@@ -12,16 +12,16 @@ class ShoesPhotoForm(ModelForm):
 class TopCategoryForm(ModelForm):
     class Meta:
         model = TopCategory
-        fields = ['top_category']
+        fields = ['topcategory']
 
 
 class SubCategoryForm(ModelForm):
     class Meta:
         model = SubCategory
-        fields = ['top_category', 'sub_category']
+        fields = ['topcategory', 'subcategory']
 
 
 class LabeledPhotoForm(ModelForm):
     class Meta:
         model = LabeledPhoto
-        fields = ['top_category', 'sub_category']
+        fields = ['topcategory', 'subcategory']
