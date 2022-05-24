@@ -2,37 +2,59 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
-from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, Category
+from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto
 from django.shortcuts import redirect, render
-from django.views.generic import View
+
+
+def first_page(request):
+    return render(request, 'first_page.html')
 
 
 class PhotoList(ListView):
     model = Photo
     template_name = 'photo/photo_list.html'
+    queryset = Photo.objects.filter(labeled=False)
 
 
 class PhotoUpdate(UpdateView):
     model = Photo
     form_class = ShoesPhotoForm
     template_name = 'photo/photo_update.html'
-    success_url = '/'
+    success_url = '/list/'
 
 
 class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
-    success_url = '/'
+    success_url = '/list/'
+
+
+def labelPhoto(request, pk):
+    if request.method == 'GET':
+        labeled = Photo.objects.get(id=pk)
+        subcategories = SubCategory.objects.all()
+        topcategories = TopCategory.objects.all()
+        return render(request, 'photo/photo_detail.html',
+                      {'labeled': labeled, 'subcategories': subcategories, 'topcategories': topcategories})
+
+    elif request.method == 'POST':
+        new_labeled = LabeledPhoto()
+        new_labeled.labeled_image = Photo.objects.get(id=pk)
+        new_labeled.topcategory = request.POST.get('top')
+        new_labeled.subcategory = request.POST.get('sub')
+        new_labeled.save()
+
+        labeled = Photo.objects.get(id=pk)
+        labeled.labeled = True
+        labeled.save()
+
+        return redirect('/list/')
+    return render(request, 'photo/photo_detail.html')
 
 
 class PhotoDetail(DetailView):
     model = Photo
     template_name = 'photo/photo_detail.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(PhotoDetail, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        return context
 
 
 class TopCategoryCreate(CreateView):
@@ -56,25 +78,9 @@ def addPhoto(request):
         for image in image:
             Photo.objects.create(image=image)
 
-        return redirect('/')
+        return redirect('/list/')
 
     return render(request, 'photo/photo_create.html')
-
-
-def labelPhoto(request, pk):
-    if request.method == 'GET':
-        labeled = Photo.objects.get(id=pk)
-        return render(request, 'label/label.html', {'labeled': labeled})
-
-    if request.method == 'POST':
-        new_labeled = LabeledPhoto()
-        new_labeled.labeled_image = Photo.objects.get(id=pk)
-        new_labeled.top_category = request.POST.get('top')
-        new_labeled.sub_category = request.POST.get('sub')
-        new_labeled.save()
-
-        return redirect('/')
-    return render(request, 'label/label.html')
 
 
 class LabeledPhotoList(ListView):
@@ -98,11 +104,3 @@ class LabeledPhotoDelete(DeleteView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_delete.html'
     success_url = '/labeled/list'
-
-
-class CategoryView(View):
-    template_name = 'category/category.html'
-
-    def get(self, request):
-        context = {'categories': Category.objects.all()}
-        return render(request, self.template_name, context)

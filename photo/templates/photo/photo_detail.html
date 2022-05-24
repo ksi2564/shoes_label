@@ -8,44 +8,39 @@
         <div class="row">
             <div class="col-6 col-xl-4 col-md-4">
                 <div class="card" style="width: 23rem;">
-                    <img src="{{ object.image.url }}" class="card-img-top" alt="">
+                    <img src="{{ labeled.image.url }}" class="card-img-top" alt="">
                 </div>
             </div>
             <div class="col-6">
                 <div class="card">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">수정일 : {{ object.updated }}</li>
-                        <li class="list-group-item">생성일 : {{ object.created }}</li>
+                        <li class="list-group-item">수정일 : {{ labeled.updated }}</li>
+                        <li class="list-group-item">생성일 : {{ labeled.created }}</li>
+                        <li class="list-group-item">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <label for="top">상위 카테고리</label>
+                                <select id="top" name="top" style="width:10rem">
+                                    {% for topcategory in topcategories %}
+                                        <option id="{{ topcategory }}" value="{{ topcategory }}">{{ topcategory }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                <label for="sub">하위 카테고리</label>
+                                <select id="sub" name="sub" style="width:10rem">
+                                    {% for subcategory in subcategories %}
+                                        <option id="{{ subcategory.topcategory }}" value="{{ subcategory }}">{{ subcategory }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                <input type="submit" value="저장" class="btn btn-primary">
+                            </form>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="{% url 'photo:update' labeled.id %}" class="card-link">수정하기</a>
+                            <a href="{% url 'photo:delete' labeled.id %}" class="card-link">삭제하기</a>
+                        </li>
                     </ul>
-                    <p>상위 카테고리</p>
-                    <div class="mb-3">
-                        <select>
-                            <option value="운동화">운동화</option>
-                            <option value="패션슈즈">패션슈즈</option>
-                            <option value="구두&부츠">구두&부츠</option>
-                            <option value="샌들&슬리퍼">샌들&슬리퍼</option>
-                            <option value="작업화&특수화">작업화&특수화</option>
-                        </select>
-                    </div>
-                    <p>하위 카테고리</p>
-                    <div class="mb-3">
-                        <select>
-                            <option value="러닝화">러닝화</option>
-                            <option value="아웃도어">아웃도어</option>
-                            <option value="농구화">농구화</option>
-                            <option value="골프화">골프화</option>
-                            <option value="축구화">축구화</option>
-                            <option value="배드민턴화">배드민턴화</option>
-                        </select>
-                    </div>
-                    <input type="submit" value="저장" class="btn btn-primary">
-                </div>
-                <div>
-                    <a href="{% url 'photo:update' object.id %}" class="card-link">수정하기</a>
-                    <a href="{% url 'photo:delete' object.id %}" class="card-link">삭제하기</a>
-                </div>
-                <div>
-                        {% include 'category/category.html' %}
                 </div>
             </div>
         </div>
