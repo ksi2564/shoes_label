@@ -1,6 +1,12 @@
 asgiref==3.5.0
+beautifulsoup4==4.11.1
 Django==4.0.3
+django-bootstrap4==22.1
 django-environ==0.8.1
 environ==1.0
+form==0.0.1
+Pillow==9.1.0
+soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
+django-mptt~=0.13.4

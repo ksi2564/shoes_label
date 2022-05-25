@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-xl-4 col-md-4">
+                <div class="card" style="width: 23rem;">
+                    <img src="{{ object.labeled_image.image.url }}" class="card-img-top" alt="">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">생성일 : {{ object.created }}</li>
+                        <li class="list-group-item">상위 카테고리 : {{ object.topcategory }}</li>
+                        <li class="list-group-item">하위 카테고리 : {{ object.subcategory }}</li>
+                        <li class="list-group-item">
+                            <a href="{% url 'photo:labeled_update' object.id %}" class="card-link">수정하기</a>
+                            <a href="{% url 'photo:labeled_delete' object.id %}" class="card-link">삭제하기</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
