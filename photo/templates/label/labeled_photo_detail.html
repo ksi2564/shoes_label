@@ -6,20 +6,23 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-6 col-xl-4 col-md-4">
-                <div class="card" style="width: 23rem;">
-                    <img src="{{ object.labeled_image.image.url }}" class="card-img-top" alt="">
-                </div>
+            <div class="card" style="width: 30rem;">
+                <img src="{{ object.labeled_image.image.url }}" class="card-img-top" alt="">
             </div>
             <div class="col-6">
-                <div class="card">
+                <div class="card" style="width: 35rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">생성일 : {{ object.created }}</li>
                         <li class="list-group-item">상위 카테고리 : {{ object.topcategory }}</li>
                         <li class="list-group-item">하위 카테고리 : {{ object.subcategory }}</li>
                         <li class="list-group-item">
-                            <a href="{% url 'photo:labeled_update' object.id %}" class="card-link">수정하기</a>
-                            <a href="{% url 'photo:labeled_delete' object.id %}" class="card-link">삭제하기</a>
+                            <p class="mt-3">
+                                {#                                검수 완료 버튼으로 바꿀 예정#}
+                                <a href="{% url 'photo:labeled_update' object.id %}" class="btn btn-primary"
+                                   style="width: 10rem;">수정</a>
+                                <a href="{% url 'photo:labeled_delete' object.id %}" class="btn btn-danger"
+                                   style="width: 5rem;">삭제</a>
+                            </p>
                         </li>
                     </ul>
                 </div>

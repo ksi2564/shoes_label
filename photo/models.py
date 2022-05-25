@@ -6,7 +6,6 @@ from django.db import models
 class Photo(models.Model):
     image = models.ImageField(upload_to='shoes_data/%Y/%m/%d', name='image')
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     labeled = models.BooleanField(default=False)
 
     def __str__(self):

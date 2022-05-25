@@ -6,15 +6,12 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-6 col-xl-4 col-md-4">
-                <div class="card" style="width: 23rem;">
-                    <img src="{{ labeled.image.url }}" class="card-img-top" alt="">
-                </div>
+            <div class="card" style="width: 30rem;">
+                <img src="{{ labeled.image.url }}" class="card-img-top" alt="">
             </div>
             <div class="col-6">
-                <div class="card">
+                <div class="card" style="width: 35rem;">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">수정일 : {{ labeled.updated }}</li>
                         <li class="list-group-item">생성일 : {{ labeled.created }}</li>
                         <li class="list-group-item">
                             <form action="" method="post">
@@ -22,23 +19,26 @@
                                 <label for="top">상위 카테고리</label>
                                 <select id="top" name="top" style="width:10rem">
                                     {% for topcategory in topcategories %}
-                                        <option id="{{ topcategory }}" value="{{ topcategory }}">{{ topcategory }}</option>
+                                        <option id="{{ topcategory }}"
+                                                value="{{ topcategory }}">{{ topcategory }}</option>
                                     {% endfor %}
                                 </select>
                                 <br>
-                                <label for="sub">하위 카테고리</label>
-                                <select id="sub" name="sub" style="width:10rem">
-                                    {% for subcategory in subcategories %}
-                                        <option id="{{ subcategory.topcategory }}" value="{{ subcategory }}">{{ subcategory }}</option>
-                                    {% endfor %}
-                                </select>
-                                <br>
-                                <input type="submit" value="저장" class="btn btn-primary">
+                                <p class="mt-2">
+                                    <label for="sub">하위 카테고리</label>
+                                    <select id="sub" name="sub" style="width:10rem">
+                                        {% for subcategory in subcategories %}
+                                            <option id="{{ subcategory.topcategory }}"
+                                                    value="{{ subcategory }}">{{ subcategory }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </p>
+                                <p class="mt-3">
+                                    <input type="submit" value="저장" class="btn btn-success" style="width: 10rem;">
+                                    <a href="{% url 'photo:delete' labeled.id %}" class="btn btn-danger"
+                                       style="width: 5rem;">삭제</a>
+                                </p>
                             </form>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="{% url 'photo:update' labeled.id %}" class="card-link">수정하기</a>
-                            <a href="{% url 'photo:delete' labeled.id %}" class="card-link">삭제하기</a>
                         </li>
                     </ul>
                 </div>
