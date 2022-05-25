@@ -1,4 +1,5 @@
 # Create your views here.
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
@@ -97,7 +98,10 @@ class LabeledPhotoUpdate(UpdateView):
     model = LabeledPhoto
     form_class = LabeledPhotoForm
     template_name = 'label/labeled_photo_update.html'
-    success_url = '/labeled/list'
+    success_url = reverse_lazy('photo:labeled_detail')
+
+    def get_success_url(self):
+        return reverse('photo:labeled_detail', kwargs={'pk': self.object.pk})
 
 
 class LabeledPhotoDelete(DeleteView):
