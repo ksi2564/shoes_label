@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container">
-        <div class="row">
+        <div class="row" style="float: left">
             <div style="width: 35rem;">
                 <div style="text-align:left; margin: 5rem 0 2rem 0">
                     <h2>
@@ -10,8 +11,8 @@
                         신발 AI 솔루션
                     </h2>
                     <h5>
-                        고객사에게는 효율적인 업무 환경을<br>
-                        고객들에게는 편리한 쇼핑 경험을 제공합니다.
+                        AI 솔루션을 위한 작업 사이트<br>
+                        라벨링을 하기 전, 본인의 이름을 작성해주십시오.
                     </h5>
                 </div>
                 <div style="text-align:left; margin: 2rem 0 .7rem 0;">
@@ -41,6 +42,9 @@
                 </div>
 
             </div>
+        </div>
+        <div style="float: left; width: 35rem;">
+            <img src="{% static 'images/MainPhoto.png' %}" alt="...">
         </div>
     </div>
 {% endblock %}
