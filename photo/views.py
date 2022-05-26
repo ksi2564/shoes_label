@@ -8,6 +8,9 @@ from django.shortcuts import redirect, render
 
 
 def first_page(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        request.session['labeler'] = name
     return render(request, 'first_page.html')
 
 
@@ -41,6 +44,7 @@ def labelPhoto(request, pk):
     elif request.method == 'POST':
         new_labeled = LabeledPhoto()
         new_labeled.labeled_image = Photo.objects.get(id=pk)
+        new_labeled.labeler = request.session['labeler']
         new_labeled.topcategory = request.POST.get('top')
         new_labeled.subcategory = request.POST.get('sub')
         new_labeled.save()
@@ -107,4 +111,4 @@ class LabeledPhotoUpdate(UpdateView):
 class LabeledPhotoDelete(DeleteView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_delete.html'
-    success_url = '/labeled/list'
+    success_url = reverse_lazy('photo:labeled_list')
