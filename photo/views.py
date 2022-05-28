@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
 from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 
 def first_page(request):
@@ -106,6 +106,18 @@ class LabeledPhotoUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse('photo:labeled_detail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super(LabeledPhotoUpdate, self).get_context_data(**kwargs)
+        context['topcategories'] = TopCategory.objects.all()
+        context['subcategories'] = SubCategory.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        request.POST = request.POST.copy()
+        request.POST['topcategory'] = request.POST.get('top')
+        request.POST['subcategory'] = request.POST.get('sub')
+        return super(LabeledPhotoUpdate, self).post(request, **kwargs)
 
 
 class LabeledPhotoDelete(DeleteView):
