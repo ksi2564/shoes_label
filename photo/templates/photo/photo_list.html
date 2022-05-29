@@ -7,16 +7,18 @@
     <div class="container">
         <div class="row">
             <div style="display: inline;">
-            {% if not object_list %}
-                라벨링할 이미지를 업로드 해주세요!
-            {% else %}
-                {% for object in object_list %}
-                    <a class="btn p-0" href="{% url 'photo:detail' object.id %}">
-                        <img src="{{ object.image.url }}" class="card-img-top" alt="..."
-                             style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
+                {% if not object_list %}
+                    라벨링할 이미지를 업로드 해주세요!
+                {% else %}
+                    {% for object in object_list %}
+                        {% if not object.labeled %}
+                            <a class="btn p-0" href="{% url 'photo:detail' object.id %}">
+                            <img src="{{ object.image.url }}" class="card-img-top" alt="..."
+                                 style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
+                        {% endif %}
                     </a>
-                {% endfor %}
-            {% endif %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
