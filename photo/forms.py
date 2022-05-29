@@ -24,4 +24,4 @@ class SubCategoryForm(ModelForm):
 class LabeledPhotoForm(ModelForm):
     class Meta:
         model = LabeledPhoto
-        fields = ['topcategory', 'subcategory']
+        fields = ['labeler', 'topcategory', 'subcategory']

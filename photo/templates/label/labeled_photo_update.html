@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row"></div>
-    <div class="row">
+    <div class="container">
         <div class="col"></div>
-        <div class="col-12 col-xl-8 col-md-8">
+        <div style="text-align: center; margin: 4rem auto">
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <label for="top">상위 카테고리</label>
+                <select id="top" name="top" style="width:10rem">
+                    {% for topcategory in topcategories %}
+                        <option id="{{ topcategory }}"
+                                value="{{ topcategory }}">{{ topcategory }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <p class="mt-2">
+                    <label for="sub">하위 카테고리</label>
+                    <select id="sub" name="sub" style="width:10rem">
+                        {% for subcategory in subcategories %}
+                            <option id="{{ subcategory.topcategory }}"
+                                    value="{{ subcategory }}">{{ subcategory }}</option>
+                        {% endfor %}
+                    </select>
+                </p>
                 <div style="margin-left: 2.5rem;">
                     <input type="submit" value="수정하기" class="btn btn-outline-success" style="width: 10rem;">
                 </div>
