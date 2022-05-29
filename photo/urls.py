@@ -3,8 +3,8 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from photo.views import PhotoList, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
-    SubCategoryCreate, addPhoto, labelPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete, first_page
+    SubCategoryCreate, addPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
+    LabeledPhotoDelete, first_page, PhotoDetail
 
 app_name = "photo"
 
@@ -14,7 +14,7 @@ urlpatterns = [
     path('create/', addPhoto, name='create'),
     path('update/<int:pk>/', PhotoUpdate.as_view(), name='update'),
     path('delete/<int:pk>/', PhotoDelete.as_view(), name='delete'),
-    path('detail/<int:pk>/', labelPhoto, name='detail'),
+    path('detail/<int:pk>/', PhotoDetail.as_view(), name='detail'),
 
     path('labeled/list', LabeledPhotoList.as_view(), name='labeled_list'),
     path('labeled/detail/<int:pk>', LabeledPhotoDetail.as_view(), name='labeled_detail'),

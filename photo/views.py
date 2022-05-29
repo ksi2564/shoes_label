@@ -1,5 +1,4 @@
 # Create your views here.
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -31,45 +30,28 @@ class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
     success_url = '/list/'
-# class PhotoDetail(DetailView):
-#     model = Photo
-#     template_name = 'photo/photo_detail.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(PhotoDetail, self).get_context_data(**kwargs)
-#         context['topcategories'] = TopCategory.objects.all()
-#         context['subcategories'] = SubCategory.objects.all()
-#         return context
-#
-#     def post(self, request, *args, **kwargs):
-#         new_labeled = LabeledPhoto()
-#         new_labeled.labeled_image = self.model.objects.get(id=self.object)
-#         new_labeled.labeler = request.session['labeler']
-#         new_labeled.topcategory = request.POST.get('top')
-#         new_labeled.subcategory = request.POST.get('sub')
-#         new_labeled.save()
-#
-#         return redirect('/list/')
 
 
-def labelPhoto(request, pk):
-    if request.method == 'GET':
-        labeled = Photo.objects.get(id=pk)
-        subcategories = SubCategory.objects.all()
-        topcategories = TopCategory.objects.all()
-        return render(request, 'photo/photo_detail.html',
-                      {'labeled': labeled, 'subcategories': subcategories, 'topcategories': topcategories})
+class PhotoDetail(DetailView):
+    model = Photo
+    template_name = 'photo/photo_detail.html'
 
-    elif request.method == 'POST':
+    def get_context_data(self, **kwargs):
+        context = super(PhotoDetail, self).get_context_data(**kwargs)
+        context['topcategories'] = TopCategory.objects.all()
+        context['subcategories'] = SubCategory.objects.all()
+        return context
+
+    @staticmethod
+    def post(request, *args, **kwargs):
         new_labeled = LabeledPhoto()
-        new_labeled.labeled_image = Photo.objects.get(id=pk)
+        new_labeled.labeled_image = Photo.objects.get(id=request.POST.get('labeled_image'))
         new_labeled.labeler = request.session['labeler']
         new_labeled.topcategory = request.POST.get('top')
         new_labeled.subcategory = request.POST.get('sub')
         new_labeled.save()
 
         return redirect('/list/')
-    return render(request, 'photo/photo_detail.html')
 
 
 class TopCategoryCreate(CreateView):
