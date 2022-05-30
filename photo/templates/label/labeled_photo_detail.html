@@ -18,7 +18,8 @@
                         <li class="list-group-item">하위 카테고리 : {{ object.subcategory }}</li>
                         <li class="list-group-item">
                             <p class="mt-3">
-                                {#                                검수 완료 버튼으로 바꿀 예정#}
+                                <a class="tab pointer-tag selected"
+                                       style="font-size: 1rem; margin: 2rem; display: inline-block;">검수완료</a>
                                 <a href="{% url 'photo:labeled_update' object.id %}" class="btn btn-primary"
                                    style="width: 10rem;">수정</a>
                                 <a href="{% url 'photo:labeled_delete' object.id %}" class="btn btn-danger"
