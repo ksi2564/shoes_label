@@ -24,17 +24,12 @@
                         </a>
                     </li>
                 </ul>
-                {#                작업자 이름 작성칸으로 교체 예정#}
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active mt-1" href="#" id="navbarDropdownMenuLink" role="button"
-                       style="color: black" data-toggle="dropdown" aria-expanded="false">
-                        test@example.com
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">계정 정보</a>
-                        <a class="dropdown-item" href="#">내 작업현황</a>
-                        <a class="dropdown-item" href="#">로그아웃</a>
-                    </div>
+                <div class="font-weight-bold">
+                    {% if request.session.labeler %}
+                        작업자 : {{ request.session.labeler }}
+                    {% else %}
+                        이름을 입력한 뒤 작업해주세요.
+                    {% endif %}
                 </div>
             </div>
         </div>

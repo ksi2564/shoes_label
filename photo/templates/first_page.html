@@ -1,28 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-9">
+        <div class="row" style="float: left">
+            <div style="width: 35rem;">
                 <div style="text-align:left; margin: 5rem 0 2rem 0">
                     <h2>
                         편안하게 찾고 정확하게 알려주는 <br>
                         신발 AI 솔루션
                     </h2>
                     <h5>
-                        고객사에게는 효율적인 업무 환경을<br>
-                        고객들에게는 편리한 쇼핑 경험을 제공합니다.
+                        AI 솔루션을 위한 작업 사이트<br>
+                        라벨링을 하기 전, 본인의 이름을 작성해주십시오.
                     </h5>
                 </div>
-                <div style="text-align:left; margin: 2rem 0 .7rem 0">
-                    <a class="btn text-white" href="{% url 'photo:top-category_create' %}"
-                       style="background-color:#388E3C; padding: .8rem 0;width:13rem">상위 카테고리 생성</a>
+                <div style="text-align:left; margin: 2rem 0 .7rem 0;">
+                    <div class="card" style="float: left; width: 15rem; height: 9.5rem;">
+                        <div style="margin: 1rem;">
+                            <a class="btn text-white" href="{% url 'photo:top-category_create' %}"
+                               style="background-color:#388E3C; padding: .8rem 0; width:13rem; margin-bottom: 1rem;">
+                                상위 카테고리 생성</a>
+                            <br>
+                            <a class="btn btn-outline-success" href="{% url 'photo:sub-category_create' %}"
+                               style="padding: .8rem 0; width:13rem">하위 카테고리 생성</a>
+                        </div>
+                    </div>
+                    <div class="card"
+                         style="float: left; width: 13rem; height: 9.5rem; text-align: center; margin-left: 1rem;">
+                        <form action="" method="post" style="margin: 1rem;">
+                            {% csrf_token %}
+                            <p>
+                                <label for="labeler" style="font-size: 1.2rem;">작업자 이름</label><br>
+                                <input class="form-control" style="text-align: center" type="text" name="name"
+                                       id="labeler">
+                            </p>
+                            <input class="btn btn-outline-success" style="padding: .1rem 0; width:8rem"
+                                   type="submit" value="저장">
+                        </form>
+                    </div>
                 </div>
-                <div style="text-align:left; margin-bottom: 1rem">
-                    <a class="btn btn-outline-success" href="{% url 'photo:sub-category_create' %}"
-                       style="padding: .8rem 0; width:13rem">하위 카테고리 생성</a>
-                </div>
+
             </div>
+        </div>
+        <div style="float: left; width: 35rem;">
+            <img src="{% static 'images/MainPhoto.png' %}" alt="...">
         </div>
     </div>
 {% endblock %}

@@ -6,7 +6,13 @@ from django.db import models
 class Photo(models.Model):
     image = models.ImageField(upload_to='shoes_data/%Y/%m/%d', name='image')
     created = models.DateTimeField(auto_now_add=True)
-    labeled = models.BooleanField(default=False)
+
+    @property
+    def labeled(self):
+        try:
+            return self.labeled_image is not None
+        except LabeledPhoto.DoesNotExist:
+            return False
 
     def __str__(self):
         return "image : " + str(self.image)
@@ -37,11 +43,12 @@ class LabeledPhoto(models.Model):
     labeled_image = models.OneToOneField(Photo, on_delete=models.PROTECT, related_name='labeled_image')
     topcategory = models.CharField(max_length=64)
     subcategory = models.CharField(max_length=64)
+    labeler = models.CharField(max_length=32)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.labeled_image)
+        return '작업자: ' + self.labeler + ' / ' + str(self.labeled_image)
 
     class Meta:
         ordering = ['-created']
