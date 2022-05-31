@@ -41,6 +41,16 @@ class PhotoDetail(DetailView):
         context = super(PhotoDetail, self).get_context_data(**kwargs)
         context['topcategories'] = TopCategory.objects.all()
         context['subcategories'] = SubCategory.objects.all()
+        image = self.object
+        try:
+            context['the_prev'] = Photo.objects.filter(pk__lt=image.pk).order_by('-pk').first().pk
+        except:
+            context['the_prev'] = Photo.objects.filter(pk__gt=image.pk).order_by('-pk').first().pk
+        try:
+            context['the_next'] = Photo.objects.filter(pk__gt=image.pk).order_by('pk').first().pk
+        except:
+            context['the_next'] = Photo.objects.filter(pk__lt=image.pk).order_by('pk').first().pk
+
         return context
 
     @staticmethod

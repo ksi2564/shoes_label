@@ -18,7 +18,7 @@ class Photo(models.Model):
         return "image : " + str(self.image)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['created']
 
 
 class TopCategory(models.Model):
