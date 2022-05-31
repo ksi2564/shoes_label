@@ -16,6 +16,7 @@ def first_page(request):
 
 class PhotoList(ListView):
     model = Photo
+    paginate_by = 25
     template_name = 'photo/photo_list.html'
 
 
