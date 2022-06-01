@@ -3,7 +3,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
-from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto
+from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, ExamPhoto
 from django.shortcuts import redirect, render
 
 
@@ -16,7 +16,8 @@ def first_page(request):
 
 class PhotoList(ListView):
     model = Photo
-    paginate_by = 25
+    paginate_by = 5
+    queryset = Photo.objects.filter(labeled_image__isnull=True)
     template_name = 'photo/photo_list.html'
 
 
@@ -87,6 +88,7 @@ def addPhoto(request):
 
 class LabeledPhotoList(ListView):
     model = LabeledPhoto
+    paginate_by = 5
     template_name = 'label/labeled_photo_list.html'
 
 
@@ -137,3 +139,8 @@ class LabeledPhotoDelete(DeleteView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_delete.html'
     success_url = reverse_lazy('photo:labeled_list')
+
+
+class ExamPhotoList(ListView):
+    model = ExamPhoto
+    template_name = 'exam/exam_photo_list.html'
