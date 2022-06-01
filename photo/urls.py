@@ -4,7 +4,7 @@ from django.urls import path
 
 from photo.views import PhotoList, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
     SubCategoryCreate, addPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete, first_page, PhotoDetail
+    LabeledPhotoDelete, first_page, PhotoDetail, ExamPhotoList
 
 app_name = "photo"
 
@@ -23,6 +23,8 @@ urlpatterns = [
 
     path('topcategory/create/', TopCategoryCreate.as_view(), name='top-category_create'),
     path('subcategory/create/', SubCategoryCreate.as_view(), name='sub-category_create'),
+
+    path('exam/', ExamPhotoList.as_view(), name='exam_list'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
