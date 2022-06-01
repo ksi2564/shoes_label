@@ -51,4 +51,4 @@ class LabeledPhoto(models.Model):
         return '작업자: ' + self.labeler + ' / ' + str(self.labeled_image)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['created']

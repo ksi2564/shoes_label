@@ -26,6 +26,13 @@
                             </p>
                         </li>
                     </ul>
+                    {% if the_next and the_prev %}
+                        <a href="{% url 'photo:labeled_detail' the_next %}">다음</a>
+                        <a href="{% url 'photo:labeled_detail' the_prev %}">이전</a>
+                    {% else %}
+                        <a href="{% url 'photo:labeled_detail' object.id %}">다음</a>
+                        <a href="{% url 'photo:labeled_detail' object.id %}">이전</a>
+                    {% endif %}
                 </div>
                 <div>
 

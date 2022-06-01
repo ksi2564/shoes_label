@@ -41,15 +41,6 @@ class PhotoDetail(DetailView):
         context = super(PhotoDetail, self).get_context_data(**kwargs)
         context['topcategories'] = TopCategory.objects.all()
         context['subcategories'] = SubCategory.objects.all()
-        image = self.object
-        try:
-            context['the_prev'] = Photo.objects.filter(pk__lt=image.pk).order_by('-pk').first().pk
-        except:
-            context['the_prev'] = Photo.objects.filter(pk__gt=image.pk).order_by('-pk').first().pk
-        try:
-            context['the_next'] = Photo.objects.filter(pk__gt=image.pk).order_by('pk').first().pk
-        except:
-            context['the_next'] = Photo.objects.filter(pk__lt=image.pk).order_by('pk').first().pk
 
         return context
 
@@ -62,7 +53,10 @@ class PhotoDetail(DetailView):
         new_labeled.subcategory = request.POST.get('sub')
         new_labeled.save()
 
-        return redirect('/list/')
+        try:
+            return redirect('photo:detail', Photo.objects.filter(pk__gt=request.POST.get('labeled_image')).first().pk)
+        except:
+            return redirect('photo:list')
 
 
 class TopCategoryCreate(CreateView):
@@ -99,6 +93,21 @@ class LabeledPhotoList(ListView):
 class LabeledPhotoDetail(DetailView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LabeledPhotoDetail, self).get_context_data(**kwargs)
+
+        if LabeledPhoto.objects.count() != 1:
+            try:
+                context['the_prev'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('-pk').first().pk
+            except:
+                context['the_prev'] = LabeledPhoto.objects.filter(pk__gt=self.object.pk).order_by('-pk').first().pk
+            try:
+                context['the_next'] = LabeledPhoto.objects.filter(pk__gt=self.object.pk).order_by('pk').first().pk
+            except:
+                context['the_next'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('pk').first().pk
+
+        return context
 
 
 class LabeledPhotoUpdate(UpdateView):
