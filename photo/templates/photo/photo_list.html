@@ -4,37 +4,46 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div style="display: inline;">
-                {% if not object_list %}
-                    라벨링할 이미지를 업로드 해주세요!
-                {% else %}
-                    {% for object in object_list %}
-                        <a class="btn p-0" href="{% url 'photo:detail' object.id %}">
-                            <img src="{{ object.image.url }}" class="card-img-top" alt="..."
-                                 style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
-                        </a>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo;</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
-                {% endif %}
-
-                <span class="current">
-                    {{ page_obj.number }}
-                </span>
-
-                {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
-                {% endif %}
-            </span>
+<div class="container">
+    <div class="row">
+        <div style="display: inline;">
+            {% if not object_list %}
+                라벨링할 이미지를 업로드 해주세요!
+            {% else %}
+                {% for object in object_list %}
+                    <a class="btn p-0" href="{% url 'photo:detail' object.id %}">
+                        <img src="{{ object.image.url }}" class="card-img-top" alt="..."
+                             style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
+<div id="button_senter">
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+        {% if page_obj.has_previous %}
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+        {% endif %}
+    <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+      {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+</div>
+</div>
+<style>
+#button_senter{
+        width:150px;
+        margin:auto;
+    }
+ </style>
 {% endblock %}
