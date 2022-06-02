@@ -16,7 +16,7 @@ def first_page(request):
 
 class PhotoList(ListView):
     model = Photo
-    paginate_by = 5
+    paginate_by = 2
     queryset = Photo.objects.filter(labeled_image__isnull=True)
     template_name = 'photo/photo_list.html'
 
