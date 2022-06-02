@@ -25,13 +25,13 @@ class PhotoUpdate(UpdateView):
     model = Photo
     form_class = ShoesPhotoForm
     template_name = 'photo/photo_update.html'
-    success_url = '/list/'
+    success_url = '/list'
 
 
 class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
-    success_url = '/list/'
+    success_url = '/list'
 
 
 class PhotoDetail(DetailView):
@@ -55,7 +55,8 @@ class PhotoDetail(DetailView):
         new_labeled.save()
 
         try:
-            return redirect('photo:detail', Photo.objects.filter(pk__gt=request.POST.get('labeled_image')).first().pk)
+            return redirect('photo:detail', Photo.objects.filter(labeled_image__isnull=True,
+                                                                 pk__gt=request.POST.get('labeled_image')).first().pk)
         except:
             return redirect('photo:list')
 
@@ -64,14 +65,14 @@ class TopCategoryCreate(CreateView):
     model = TopCategory
     form_class = TopCategoryForm
     template_name = 'category/topcategory_create.html'
-    success_url = '/topcategory/create/'
+    success_url = '/topcategory/create'
 
 
 class SubCategoryCreate(CreateView):
     model = SubCategory
     form_class = SubCategoryForm
     template_name = 'category/subcategory_create.html'
-    success_url = '/subcategory/create/'
+    success_url = '/subcategory/create'
 
 
 def addPhoto(request):
@@ -81,7 +82,7 @@ def addPhoto(request):
         for image in image:
             Photo.objects.create(image=image)
 
-        return redirect('/list/')
+        return redirect('/list')
 
     return render(request, 'photo/photo_create.html')
 
@@ -89,6 +90,7 @@ def addPhoto(request):
 class LabeledPhotoList(ListView):
     model = LabeledPhoto
     paginate_by = 5
+    queryset = LabeledPhoto.objects.filter(exam_image__isnull=True)
     template_name = 'label/labeled_photo_list.html'
 
 
@@ -99,7 +101,7 @@ class LabeledPhotoDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(LabeledPhotoDetail, self).get_context_data(**kwargs)
 
-        if LabeledPhoto.objects.count() != 1:
+        if LabeledPhoto.objects.count() - ExamPhoto.objects.count() != 1:
             try:
                 context['the_prev'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('-pk').first().pk
             except:
@@ -110,6 +112,20 @@ class LabeledPhotoDetail(DetailView):
                 context['the_next'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('pk').first().pk
 
         return context
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        new_examed = ExamPhoto()
+        new_examed.exam_image = LabeledPhoto.objects.get(id=request.POST.get('examed_image'))
+        new_examed.inspector = request.session['labeler']
+        new_examed.save()
+
+        try:
+            return redirect('photo:labeled_detail', LabeledPhoto.objects.filter(exam_image__isnull=True,
+                                                                                pk__gt=request.POST.get(
+                                                                                    'examed_image')).first().pk)
+        except:
+            return redirect('photo:labeled_list')
 
 
 class LabeledPhotoUpdate(UpdateView):
@@ -144,3 +160,30 @@ class LabeledPhotoDelete(DeleteView):
 class ExamPhotoList(ListView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_list.html'
+
+
+class ExamPhotoDetail(DetailView):
+    model = ExamPhoto
+    template_name = 'exam/exam_photo_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ExamPhotoDetail, self).get_context_data(**kwargs)
+
+        if ExamPhoto.objects.count() != 1:
+            try:
+                context['the_prev'] = ExamPhoto.objects.filter(pk__lt=self.object.pk).order_by('-pk').first().pk
+            except:
+                context['the_prev'] = ExamPhoto.objects.filter(pk__gt=self.object.pk).order_by('-pk').first().pk
+            try:
+                context['the_next'] = ExamPhoto.objects.filter(pk__gt=self.object.pk).order_by('pk').first().pk
+            except:
+                context['the_next'] = ExamPhoto.objects.filter(pk__lt=self.object.pk).order_by('pk').first().pk
+
+        return context
+
+
+class ExamPhotoDelete(DeleteView):
+    model = ExamPhoto
+    template_name = 'exam/exam_photo_delete.html'
+    success_url = reverse_lazy('photo:exam_list')
+

@@ -56,7 +56,7 @@ class LabeledPhoto(models.Model):
 
 class ExamPhoto(models.Model):
     exam_image = models.OneToOneField(LabeledPhoto, on_delete=models.PROTECT, related_name='exam_image')
-    inspector = models.CharField(max_length=32)
+    inspector = models.CharField(max_length=32, default='tester')
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -64,4 +64,3 @@ class ExamPhoto(models.Model):
 
     class Meta:
         ordering = ['created']
-

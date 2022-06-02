@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card" style="width: 30rem;">
+                <img src="{{ object.exam_image.labeled_image.image.url }}" class="card-img-top" alt="">
+            </div>
+            <div class="col-6">
+                <div class="card" style="width: 35rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">생성일 : {{ object.created }}</li>
+                        <li class="list-group-item">작업자 : {{ object.inspector }}</li>
+                        <li class="list-group-item">상위 카테고리 : {{ object.exam_image.topcategory }}</li>
+                        <li class="list-group-item">하위 카테고리 : {{ object.exam_image.subcategory }}</li>
+                        <li class="list-group-item">
+                            <a href="{% url 'photo:exam_delete' object.id %}" class="btn btn-danger"
+                               style="width: 5rem;">삭제</a>
+                        </li>
+                    </ul>
+                    {% if the_next and the_prev %}
+                        <a href="{% url 'photo:exam_detail' the_next %}">다음</a>
+                        <a href="{% url 'photo:exam_detail' the_prev %}">이전</a>
+                    {% else %}
+                        <a href="{% url 'photo:exam_detail' object.id %}">다음</a>
+                        <a href="{% url 'photo:exam_detail' object.id %}">이전</a>
+                    {% endif %}
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
