@@ -4,7 +4,8 @@ from django.urls import path
 
 from photo.views import PhotoList, PhotoUpdate, PhotoDelete, TopCategoryCreate, \
     SubCategoryCreate, addPhoto, LabeledPhotoList, LabeledPhotoDetail, LabeledPhotoUpdate, \
-    LabeledPhotoDelete, first_page, PhotoDetail, ExamPhotoList, ExamPhotoDetail, ExamPhotoDelete, export_data_csv
+    LabeledPhotoDelete, first_page, PhotoDetail, ExamPhotoList, ExamPhotoDetail, ExamPhotoDelete, csv_export, \
+    excel_export
 
 app_name = "photo"
 
@@ -28,7 +29,8 @@ urlpatterns = [
     path('exam/detail/<int:pk>', ExamPhotoDetail.as_view(), name='exam_detail'),
     path('exam/delete/<int:pk>', ExamPhotoDelete.as_view(), name='exam_delete'),
 
-    path('export/csv', export_data_csv, name='export_data_csv'),
+    path('export/csv', csv_export, name='export_csv'),
+    path('export/excel', excel_export, name='export_excel'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

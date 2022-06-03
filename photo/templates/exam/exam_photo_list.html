@@ -15,12 +15,10 @@
             </div>
             <div class="card" style="padding: 2.5rem; margin-top: 1rem;width: 25rem; height: 14.5rem;">
                 <h5><b>완료데이터 내보내기</b></h5><br>
-                <label><input type="radio" name="export" value="excel"> 엑셀파일</label>
-                <label><input type="radio" name="export" value="csv" checked="checked"> CSV파일</label>
-                <a class="btn text-white" href="#"
-                   style="background-color:#388E3C; margin-top: 1rem;">
-                    Export</a>
-                <a href="{% url 'photo:export_data_csv' %}">Export</a>
+                <label><input id="csv" type="radio" name="export" value="csv" checked="checked">CSV파일</label>
+                <label><input id="excel" type="radio" name="export" value="excel">엑셀파일</label>
+                <a class="btn text-white" id="export" href="{% url 'photo:export_csv' %}"
+                   style="background-color:#388E3C; margin-top: 1rem;">Export</a>
             </div>
         </div>
     </div>
