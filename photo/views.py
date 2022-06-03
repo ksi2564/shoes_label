@@ -164,12 +164,14 @@ class LabeledPhotoDelete(DeleteView):
 
 class ExamPhotoList(ListView):
     model = ExamPhoto
+    queryset = ExamPhoto.objects.all()
     template_name = 'exam/exam_photo_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(ExamPhotoList, self).get_context_data(**kwargs)
         context['image'] = Photo.objects.all()
         context['labeled_image'] = LabeledPhoto.objects.all()
+        context['preview'] = ExamPhoto.objects.all()[:5]
 
         return context
 
