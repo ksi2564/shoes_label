@@ -1,4 +1,9 @@
 # Create your views here.
+import csv
+import datetime
+
+import xlwt
+from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -187,3 +192,56 @@ class ExamPhotoDelete(DeleteView):
     template_name = 'exam/exam_photo_delete.html'
     success_url = reverse_lazy('photo:exam_list')
 
+
+def csv_export(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=' + str(datetime.date.today()) + '.csv'
+    '.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['파일명', '상위 카테고리', '하위 카테고리', '최종 검수자'])
+
+    csv_datas = ExamPhoto.objects.all().values_list('exam_image__labeled_image__image', 'exam_image__topcategory',
+                                                    'exam_image__subcategory', 'inspector')
+    for csv_data in csv_datas:
+        writer.writerow(csv_data)
+
+    return response
+
+
+def excel_export(request):
+    excel_datas = ExamPhoto.objects.all().values_list('exam_image__labeled_image__image', 'exam_image__topcategory',
+                                                      'exam_image__subcategory', 'inspector')
+
+    response = HttpResponse(content_type="application/vnd.ms-excel")
+    # 다운로드 받을 때 생성될 파일명 설정
+    response["Content-Disposition"] = 'attachment; filename=' \
+                                      + str(datetime.date.today()) + '.xls'
+
+    # 인코딩 설정
+    wb = xlwt.Workbook(encoding='utf-8')
+    # 생성될 시트명 설정
+    ws = wb.add_sheet('Shoes Labeling Information')
+
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['파일명', '상위 카테고리', '하위 카테고리', '최종 검수자']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+        # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+    rows = ExamPhoto.objects.all().values_list('exam_image__labeled_image__image', 'exam_image__topcategory',
+                                               'exam_image__subcategory', 'inspector')
+
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+    return response

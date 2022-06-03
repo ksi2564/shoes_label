@@ -19,12 +19,27 @@
 
     <script>
         $(document).ready(function () {
-            let $top=$('#top'),
-                $sub=$('#sub'),
-                $options=$sub.find('option');
-                $top.on('change', function(){
-                    $sub.html($options.filter('[id="'+this.value+'"]'));
-                }).trigger('change');
+            let $top = $('#top'),
+                $sub = $('#sub'),
+                $options = $sub.find('option');
+            $top.on('change', function () {
+                $sub.html($options.filter('[id="' + this.value + '"]'));
+            }).trigger('change');
+        });
+
+        $(function () {
+            $('input[type="radio"][id="excel"]').on('click', function () {
+                let chkValue = $('input[type=radio][id="excel"]:checked').val();
+                if (chkValue) {
+                    $('#export').attr('href', "{% url 'photo:export_excel' %}");
+                }
+            });
+            $('input[type="radio"][id="csv"]').on('click', function () {
+                let chkValue = $('input[type=radio][id="csv"]:checked').val();
+                if (chkValue) {
+                    $('#export').attr('href', "{% url 'photo:export_csv' %}");
+                }
+            });
         });
     </script>
 
