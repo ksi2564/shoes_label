@@ -89,7 +89,7 @@ def addPhoto(request):
 
 class LabeledPhotoList(ListView):
     model = LabeledPhoto
-    paginate_by = 5
+    paginate_by = 2
     queryset = LabeledPhoto.objects.filter(exam_image__isnull=True)
     template_name = 'label/labeled_photo_list.html'
 

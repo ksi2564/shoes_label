@@ -86,3 +86,9 @@ img {
     outline: none;
     background: #388E3C;
 }
+
+#button_center {
+    width: 150px;
+    margin: auto;
+}
+
