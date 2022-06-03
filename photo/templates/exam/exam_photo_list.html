@@ -7,18 +7,17 @@
     <div class="container">
         <div class="container">
             <div class="card" style="padding: 2.5rem; width: 25rem; height: 14.5rem;">
-                <h5>업로드한 사진 <b>100</b></h5>
+                <h5>업로드한 사진 <b>{{ image.count }}개</b></h5>
                 <br>
-                <h5>라벨링 현황 <b>50/100</b></h5>
+                <h5>라벨링 현황 <b>{{ labeled_image.count }}개/{{ image.count }}개</b></h5>
                 <br>
-                <h5>검수 현황 <b>30/50</b></h5>
+                <h5>검수 현황 <b>{{ object_list.count }}개/{{ labeled_image.count }}개</b></h5>
             </div>
             <div class="card" style="padding: 2.5rem; margin-top: 1rem;width: 25rem; height: 14.5rem;">
                 <h5><b>완료데이터 내보내기</b></h5><br>
                 <label><input id="csv" type="radio" name="export" value="csv" checked="checked">CSV파일</label>
                 <label><input id="excel" type="radio" name="export" value="excel">엑셀파일</label>
-                <a class="btn text-white" id="export" href="{% url 'photo:export_csv' %}"
-                   style="background-color:#388E3C; margin-top: 1rem;">Export</a>
+                <a class="btn btn-outline-success" id="export" href="{% url 'photo:export_csv' %}" style="margin-top: 1rem;">Export</a>
             </div>
         </div>
     </div>
