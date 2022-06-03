@@ -9,7 +9,7 @@
             <div class="card" style="width: 30rem;">
                 <img src="{{ object.labeled_image.image.url }}" class="card-img-top" alt="">
             </div>
-            <div class="col-6">
+            <div class="col-6" style="padding: 0; margin-left: 1rem;">
                 <div class="card" style="width: 35rem;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">생성일 : {{ object.created }}</li>
@@ -29,16 +29,23 @@
                             </form>
                         </li>
                     </ul>
-                    {% if the_next and the_prev %}
-                        <a href="{% url 'photo:labeled_detail' the_next %}">다음</a>
-                        <a href="{% url 'photo:labeled_detail' the_prev %}">이전</a>
-                    {% else %}
-                        <a href="{% url 'photo:labeled_detail' object.id %}">다음</a>
-                        <a href="{% url 'photo:labeled_detail' object.id %}">이전</a>
-                    {% endif %}
                 </div>
-                <div>
-
+                <div class="mt-2 mr-3">
+                    {% if the_next and the_prev %}
+                        <span style="float: right;">
+                            <a class="btn btn-outline-secondary" style="width: 5rem;"
+                               href="{% url 'photo:labeled_detail' the_prev %}">이전</a>
+                            <a class="btn btn-outline-secondary" style="width: 5rem;"
+                               href="{% url 'photo:labeled_detail' the_next %}">다음</a>
+                        </span>
+                    {% else %}
+                        <span style="float: right;">
+                            <a class="btn btn-outline-secondary" style="width: 5rem;"
+                               href="{% url 'photo:labeled_detail' object.id %}">이전</a>
+                            <a class="btn btn-outline-secondary" style="width: 5rem;"
+                               href="{% url 'photo:labeled_detail' object.id %}">다음</a>
+                        </span>
+                    {% endif %}
                 </div>
             </div>
         </div>
