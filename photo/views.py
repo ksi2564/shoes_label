@@ -166,6 +166,13 @@ class ExamPhotoList(ListView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(ExamPhotoList, self).get_context_data(**kwargs)
+        context['image'] = Photo.objects.all()
+        context['labeled_image'] = LabeledPhoto.objects.all()
+
+        return context
+
 
 class ExamPhotoDetail(DetailView):
     model = ExamPhoto
