@@ -1,4 +1,7 @@
 # Create your views here.
+import csv
+
+from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
@@ -187,3 +190,17 @@ class ExamPhotoDelete(DeleteView):
     template_name = 'exam/exam_photo_delete.html'
     success_url = reverse_lazy('photo:exam_list')
 
+
+def export_data_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="shoes_label.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['파일명', '상위 카테고리', '하위 카테고리', '최종 검수자'])
+
+    csv_datas = ExamPhoto.objects.all().values_list('exam_image__labeled_image__image', 'exam_image__topcategory',
+                                                    'exam_image__subcategory', 'inspector')
+    for csv_data in csv_datas:
+        writer.writerow(csv_data)
+
+    return response
