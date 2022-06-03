@@ -210,9 +210,6 @@ def csv_export(request):
 
 
 def excel_export(request):
-    excel_datas = ExamPhoto.objects.all().values_list('exam_image__labeled_image__image', 'exam_image__topcategory',
-                                                      'exam_image__subcategory', 'inspector')
-
     response = HttpResponse(content_type="application/vnd.ms-excel")
     # 다운로드 받을 때 생성될 파일명 설정
     response["Content-Disposition"] = 'attachment; filename=' \
