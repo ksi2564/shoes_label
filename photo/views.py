@@ -108,13 +108,17 @@ class LabeledPhotoDetail(DetailView):
 
         if LabeledPhoto.objects.count() - ExamPhoto.objects.count() != 1:
             try:
-                context['the_prev'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('-pk').first().pk
+                context['the_prev'] = LabeledPhoto.objects.filter(exam_image__isnull=True,
+                                                                  pk__lt=self.object.pk).order_by('-pk').first().pk
             except:
-                context['the_prev'] = LabeledPhoto.objects.filter(pk__gt=self.object.pk).order_by('-pk').first().pk
+                context['the_prev'] = LabeledPhoto.objects.filter(exam_image__isnull=True,
+                                                                  pk__gt=self.object.pk).order_by('-pk').first().pk
             try:
-                context['the_next'] = LabeledPhoto.objects.filter(pk__gt=self.object.pk).order_by('pk').first().pk
+                context['the_next'] = LabeledPhoto.objects.filter(exam_image__isnull=True,
+                                                                  pk__gt=self.object.pk).order_by('pk').first().pk
             except:
-                context['the_next'] = LabeledPhoto.objects.filter(pk__lt=self.object.pk).order_by('pk').first().pk
+                context['the_next'] = LabeledPhoto.objects.filter(exam_image__isnull=True,
+                                                                  pk__lt=self.object.pk).order_by('pk').first().pk
 
         return context
 
