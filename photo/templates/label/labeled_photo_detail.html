@@ -14,16 +14,19 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">생성일 : {{ object.created }}</li>
                         <li class="list-group-item">작업자 : {{ object.labeler }}</li>
-                        <li class="list-group-item">상위 카테고리 : {{ object.topcategory }}</li>
-                        <li class="list-group-item">하위 카테고리 : {{ object.subcategory }}</li>
                         <li class="list-group-item">
-                            <p class="mt-3">
-                                {#                                검수 완료 버튼으로 바꿀 예정#}
-                                <a href="{% url 'photo:labeled_update' object.id %}" class="btn btn-primary"
-                                   style="width: 10rem;">수정</a>
+                            <p>
+                                상위 카테고리 : {{ object.topcategory }}
+                            </p>
+                            하위 카테고리 : {{ object.subcategory }}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <label for="examed_image"></label>
+                                <input name="examed_image" id="examed_image" value="{{ object.id }}" hidden><br>
+                                <input type="submit" value="검수 확인" class="btn btn-success" style="width: 10rem;">
                                 <a href="{% url 'photo:labeled_delete' object.id %}" class="btn btn-danger"
                                    style="width: 5rem;">삭제</a>
-                            </p>
+                            </form>
                         </li>
                     </ul>
                     {% if the_next and the_prev %}

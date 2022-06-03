@@ -64,4 +64,3 @@ class ExamPhoto(models.Model):
 
     class Meta:
         ordering = ['created']
-
