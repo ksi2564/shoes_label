@@ -5,7 +5,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="container">
+        <div style="float: left;">
             <div class="card" style="padding: 2.5rem; width: 25rem; height: 14.5rem;">
                 <h5>업로드한 사진 <b>{{ image.count }}개</b></h5>
                 <br>
@@ -13,12 +13,38 @@
                 <br>
                 <h5>검수 현황 <b>{{ object_list.count }}개/{{ labeled_image.count }}개</b></h5>
             </div>
-            <div class="card" style="padding: 2.5rem; margin-top: 1rem;width: 25rem; height: 14.5rem;">
-                <h5><b>완료데이터 내보내기</b></h5><br>
-                <label><input id="csv" type="radio" name="export" value="csv" checked="checked">CSV파일</label>
-                <label><input id="excel" type="radio" name="export" value="excel">엑셀파일</label>
-                <a class="btn btn-outline-success" id="export" href="{% url 'photo:export_csv' %}" style="margin-top: 1rem;">Export</a>
+            <div class="card" style="padding: 2.5rem; margin: 1rem 0; width: 25rem; height: 14.5rem;">
+                <h5><b>완료데이터 내보내기</b></h5>
+                <div>
+                    <label><input id="csv" type="radio" name="export" value="csv" checked="checked"> CSV파일</label><br>
+                    <label><input id="excel" type="radio" name="export" value="excel"> 엑셀파일</label>
+                </div>
+                <a class="btn btn-outline-success" id="export" href="{% url 'photo:export_csv' %}"
+                   style="margin-top: 1rem;">Export</a>
             </div>
+        </div>
+        <span style="margin-left: 3rem;"><b>파일 미리보기(상위 {{ preview.count }}개를 보여줍니다.)</b></span>
+        <div class="card" style="float:left; margin: 1rem 3rem">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td><b>파일명</b></td>
+                    <td><b>상위 카테고리</b></td>
+                    <td><b>하위 카테고리</b></td>
+                    <td><b>최종 검수자</b></td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for object in preview %}
+                    <tr>
+                        <td>{{ object.exam_image.labeled_image.image }}</td>
+                        <td>{{ object.exam_image.topcategory }}</td>
+                        <td>{{ object.exam_image.subcategory }}</td>
+                        <td>{{ object.inspector }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}
