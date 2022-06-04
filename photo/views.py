@@ -6,7 +6,6 @@ import xlwt
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from rest_framework import generics
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
 from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, ExamPhoto
@@ -20,7 +19,7 @@ def first_page(request):
     return render(request, 'first_page.html')
 
 
-class PhotoList(generics.ListCreateAPIView):
+class PhotoList(ListView):
     model = Photo
     paginate_by = 25
     queryset = Photo.objects.filter(labeled_image__isnull=True)
