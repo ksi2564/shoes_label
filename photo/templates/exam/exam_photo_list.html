@@ -8,10 +8,22 @@
         <div style="float: left;">
             <div class="card" style="padding: 2.5rem; width: 25rem; height: 14.5rem;">
                 <h5>업로드한 사진 <b>{{ image.count }}개</b></h5>
-                <br>
-                <h5>라벨링 현황 <b>{{ labeled_image.count }}개/{{ image.count }}개</b></h5>
-                <br>
-                <h5>검수 현황 <b>{{ object_list.count }}개/{{ labeled_image.count }}개</b></h5>
+                <div style="margin-top: 1rem;">
+                    <h5>라벨링 현황 <b>{{ labeled_image.count }}개/{{ image.count }}개</b></h5>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"
+                         style="width: {{ labeled_per }}%">{{ labeled_per }}%
+                    </div>
+                </div>
+                <div style="margin-top: .2rem;">
+                    <h5>검수 현황 <b>{{ object_list.count }}개/{{ labeled_image.count }}개</b></h5>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"
+                         style="width: {{ examed_per }}%">{{ examed_per }}%
+                    </div>
+                </div>
             </div>
             <div class="card" style="padding: 2.5rem; margin: 1rem 0; width: 25rem; height: 14.5rem;">
                 <h5><b>완료데이터 내보내기</b></h5>
