@@ -23,7 +23,7 @@
                    style="margin-top: 1rem;">Export</a>
             </div>
         </div>
-        <span style="margin-left: 3rem;"><b>파일 미리보기(상위 {{ preview.count }}개를 보여줍니다.)</b></span>
+        <span style="margin-left: 3rem;"><b>파일 미리보기(총 {{ object_list.count }}개의 데이터 중에 상위 {{ preview.count }}개를 보여줍니다.)</b></span>
         <div class="card" style="float:left; margin: 1rem 3rem">
             <table class="table table-striped" style="width: 38.2rem;">
                 <thead>
@@ -45,6 +45,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <a href="{% url 'photo:exam_list_detail' %}" style="margin: .3rem">EXPORT 데이터 상세보기</a>
         </div>
     </div>
 {% endblock %}

@@ -168,8 +168,13 @@ class LabeledPhotoDelete(DeleteView):
 
 class ExamPhotoList(ListView):
     model = ExamPhoto
+    paginate_by = 25
     queryset = ExamPhoto.objects.all()
-    template_name = 'exam/exam_photo_list.html'
+
+    def get_template_names(self):
+        if self.request.path == reverse('photo:exam_list_detail'):
+            return ['exam/exam_photo_list_detail.html']
+        return ['exam/exam_photo_list.html']
 
     def get_context_data(self, **kwargs):
         context = super(ExamPhotoList, self).get_context_data(**kwargs)
@@ -203,13 +208,12 @@ class ExamPhotoDetail(DetailView):
 class ExamPhotoDelete(DeleteView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_delete.html'
-    success_url = reverse_lazy('photo:exam_list')
+    success_url = reverse_lazy('photo:exam_list_detail')
 
 
 def csv_export(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=' + str(datetime.date.today()) + '.csv'
-    '.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['파일명', '상위 카테고리', '하위 카테고리', '최종 검수자'])
