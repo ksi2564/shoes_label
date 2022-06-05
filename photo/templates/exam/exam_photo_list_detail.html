@@ -5,16 +5,35 @@
 
 {% block content %}
     <div class="container">
-        {% if not object_list %}
-                    검수 완료 데이터가 없습니다.<br>
-                    라벨링 및 검수 작업을 해주세요.
-                {% else %}
-                    {% for object in object_list %}
-                        <a class="btn p-0" href="{% url 'photo:exam_detail' object.id %}">
-                            <img src="{{ object.exam_image.labeled_image.image.url }}" class="card-img-top" alt="..."
-                                 style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
-                        </a>
-                    {% endfor %}
+        <div class="row">
+            {% if not object_list %}
+                검수 완료 데이터가 없습니다.<br>
+                라벨링 및 검수 작업을 해주세요.
+            {% else %}
+                {% for object in object_list %}
+                    <a class="btn p-0" href="{% url 'photo:exam_detail' object.id %}">
+                        <img src="{{ object.exam_image.labeled_image.image.url }}" class="card-img-top" alt="..."
+                             style="height: 13.9rem; width: 13.9rem; margin-bottom: .3rem;">
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div style="width: 150px; margin: auto;">
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                        <span>{{ page_obj.previous_page_number }}</span></a></li>
                 {% endif %}
+                <li class="page-item"><span class="page-link text-dark">{{ page_obj.number }}</span></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                        <span>{{ page_obj.next_page_number }}</span></a></li>
+                    <li class="page-item"><a class="page-link"
+                                             href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

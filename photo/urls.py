@@ -26,6 +26,7 @@ urlpatterns = [
     path('subcategory/create', SubCategoryCreate.as_view(), name='sub-category_create'),
 
     path('exam', ExamPhotoList.as_view(), name='exam_list'),
+    path('exam/detail', ExamPhotoList.as_view(), name='exam_list_detail'),
     path('exam/detail/<int:pk>', ExamPhotoDetail.as_view(), name='exam_detail'),
     path('exam/delete/<int:pk>', ExamPhotoDelete.as_view(), name='exam_delete'),
 

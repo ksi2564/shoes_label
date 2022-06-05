@@ -6,7 +6,6 @@ import xlwt
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from rest_framework import generics
 
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
 from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, ExamPhoto
@@ -20,7 +19,7 @@ def first_page(request):
     return render(request, 'first_page.html')
 
 
-class PhotoList(generics.ListCreateAPIView):
+class PhotoList(ListView):
     model = Photo
     paginate_by = 25
     queryset = Photo.objects.filter(labeled_image__isnull=True)
@@ -169,13 +168,23 @@ class LabeledPhotoDelete(DeleteView):
 
 class ExamPhotoList(ListView):
     model = ExamPhoto
+    paginate_by = 25
     queryset = ExamPhoto.objects.all()
-    template_name = 'exam/exam_photo_list.html'
+
+    def get_template_names(self):
+        if self.request.path == reverse('photo:exam_list_detail'):
+            return ['exam/exam_photo_list_detail.html']
+        return ['exam/exam_photo_list.html']
 
     def get_context_data(self, **kwargs):
         context = super(ExamPhotoList, self).get_context_data(**kwargs)
         context['image'] = Photo.objects.all()
         context['labeled_image'] = LabeledPhoto.objects.all()
+        context['labeled_per'] = int(context['labeled_image'].count()/context['image'].count()*100)
+        try:
+            context['examed_per'] = int(self.object_list.count()/context['labeled_image'].count()*100)
+        except:
+            context['examed_per'] = 0
         context['preview'] = ExamPhoto.objects.all()[:5]
 
         return context
@@ -204,13 +213,12 @@ class ExamPhotoDetail(DetailView):
 class ExamPhotoDelete(DeleteView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_delete.html'
-    success_url = reverse_lazy('photo:exam_list')
+    success_url = reverse_lazy('photo:exam_list_detail')
 
 
 def csv_export(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=' + str(datetime.date.today()) + '.csv'
-    '.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['파일명', '상위 카테고리', '하위 카테고리', '최종 검수자'])
