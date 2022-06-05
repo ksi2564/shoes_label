@@ -1,1 +1,1 @@
-web: gunicorn shoes_label.wsgi
+web:gunicorn Capstone.wsgi
