@@ -354,5 +354,6 @@ fabric.properties
 .idea/
 
 dockerfile
+nginx.conf
 
 staticfiles/
