@@ -9,6 +9,7 @@ djangorestframework==3.13.1
 environ==1.0
 form==0.0.1
 future==0.18.2
+gunicorn==20.1.0
 Pillow==9.1.0
 pytz==2022.1
 serializers==0.2.4
