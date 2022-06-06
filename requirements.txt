@@ -1,9 +1,7 @@
 asgiref==3.5.0
 beautifulsoup4==4.11.1
-dj-database-url==0.5.0
 Django==4.0.3
 django-bootstrap4==22.1
-django-cors-headers==3.12.0
 django-environ==0.8.1
 django-js-asset==2.0.0
 django-mptt==0.13.4
@@ -11,13 +9,10 @@ djangorestframework==3.13.1
 environ==1.0
 form==0.0.1
 future==0.18.2
-gunicorn==20.1.0
 Pillow==9.1.0
-psycopg2-binary==2.9.3
 pytz==2022.1
 serializers==0.2.4
 soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
-whitenoise==6.1.0
 xlwt==1.3.0
