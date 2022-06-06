@@ -180,7 +180,10 @@ class ExamPhotoList(ListView):
         context = super(ExamPhotoList, self).get_context_data(**kwargs)
         context['image'] = Photo.objects.all()
         context['labeled_image'] = LabeledPhoto.objects.all()
-        context['labeled_per'] = int(context['labeled_image'].count()/context['image'].count()*100)
+        try:
+            context['labeled_per'] = int(context['labeled_image'].count()/context['image'].count()*100)
+        except:
+            context['labeled_per'] = 0
         try:
             context['examed_per'] = int(self.object_list.count()/context['labeled_image'].count()*100)
         except:
