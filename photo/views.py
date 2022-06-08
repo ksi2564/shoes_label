@@ -5,8 +5,10 @@ import datetime
 import xlwt
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from photo.decorators import is_login
 from photo.forms import ShoesPhotoForm, TopCategoryForm, SubCategoryForm, LabeledPhotoForm
 from photo.models import Photo, TopCategory, SubCategory, LabeledPhoto, ExamPhoto
 from django.shortcuts import redirect, render
@@ -26,6 +28,7 @@ class PhotoList(ListView):
     template_name = 'photo/photo_list.html'
 
 
+@method_decorator(is_login, name="dispatch")
 class PhotoUpdate(UpdateView):
     model = Photo
     form_class = ShoesPhotoForm
@@ -33,12 +36,14 @@ class PhotoUpdate(UpdateView):
     success_url = '/list'
 
 
+@method_decorator(is_login, name="dispatch")
 class PhotoDelete(DeleteView):
     model = Photo
     template_name = 'photo/photo_delete.html'
     success_url = '/list'
 
 
+@method_decorator(is_login, name="dispatch")
 class PhotoDetail(DetailView):
     model = Photo
     template_name = 'photo/photo_detail.html'
@@ -66,6 +71,7 @@ class PhotoDetail(DetailView):
             return redirect('photo:list')
 
 
+@method_decorator(is_login, name="dispatch")
 class TopCategoryCreate(CreateView):
     model = TopCategory
     form_class = TopCategoryForm
@@ -73,6 +79,7 @@ class TopCategoryCreate(CreateView):
     success_url = '/topcategory/create'
 
 
+@method_decorator(is_login, name="dispatch")
 class SubCategoryCreate(CreateView):
     model = SubCategory
     form_class = SubCategoryForm
@@ -80,6 +87,7 @@ class SubCategoryCreate(CreateView):
     success_url = '/subcategory/create'
 
 
+@is_login
 def addPhoto(request):
     if request.method == 'POST':
         image = request.FILES.getlist('image')
@@ -92,6 +100,7 @@ def addPhoto(request):
     return render(request, 'photo/photo_create.html')
 
 
+@method_decorator(is_login, name="dispatch")
 class LabeledPhotoList(ListView):
     model = LabeledPhoto
     paginate_by = 25
@@ -99,6 +108,7 @@ class LabeledPhotoList(ListView):
     template_name = 'label/labeled_photo_list.html'
 
 
+@method_decorator(is_login, name="dispatch")
 class LabeledPhotoDetail(DetailView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_detail.html'
@@ -137,6 +147,7 @@ class LabeledPhotoDetail(DetailView):
             return redirect('photo:labeled_list')
 
 
+@method_decorator(is_login, name="dispatch")
 class LabeledPhotoUpdate(UpdateView):
     model = LabeledPhoto
     form_class = LabeledPhotoForm
@@ -160,12 +171,14 @@ class LabeledPhotoUpdate(UpdateView):
         return super(LabeledPhotoUpdate, self).post(request, **kwargs)
 
 
+@method_decorator(is_login, name="dispatch")
 class LabeledPhotoDelete(DeleteView):
     model = LabeledPhoto
     template_name = 'label/labeled_photo_delete.html'
     success_url = reverse_lazy('photo:labeled_list')
 
 
+@method_decorator(is_login, name="dispatch")
 class ExamPhotoList(ListView):
     model = ExamPhoto
     paginate_by = 25
@@ -193,6 +206,7 @@ class ExamPhotoList(ListView):
         return context
 
 
+@method_decorator(is_login, name="dispatch")
 class ExamPhotoDetail(DetailView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_detail.html'
@@ -213,6 +227,7 @@ class ExamPhotoDetail(DetailView):
         return context
 
 
+@method_decorator(is_login, name="dispatch")
 class ExamPhotoDelete(DeleteView):
     model = ExamPhoto
     template_name = 'exam/exam_photo_delete.html'
