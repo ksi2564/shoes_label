@@ -3,19 +3,23 @@
 {% block content %}
 
     <div class="row"></div>
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
-        <div class="mb-4">
-            <h4>상위 카테고리 업로드</h4>
+    <div style="text-align: center; max-width: 500px; color: rgba(0,0,0,0.82); font-size: large;margin: 4rem auto">
+        <div style="padding: 2.5rem; margin: 1rem 0; width: 30rem; height: 20rem; border:1px solid rgba(126,126,127,0.28);">
+        <div class="mb-4" style="padding: 1rem;">
+            <p style="border-bottom: 1px solid rgba(0,0,0,0.06); padding: 0.1em;"><b>상위 카테고리 업로드</b></p>
         </div>
+            <div style="color: #388E3C;">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="저장" class="btn btn-success">
         </form>
+            </div>
         <div class="mt-3">
             <a class="btn btn-outline-success" href="{% url 'photo:sub-category_create' %}"
                style="width:13rem">하위 카테고리 생성</a>
         </div>
     </div>
     <div class="row"></div>
+</div>
 {% endblock %}

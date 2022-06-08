@@ -3,11 +3,12 @@
 {% block content %}
 
     <div class="row"></div>
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
-        <div class="mb-4">
-            <h4>업로드</h4>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+    <div style="padding: 2.5rem; margin: 1rem 0; width: 30rem; height: 14rem; border:1px solid rgba(126,126,127,0.28)">
+        <div class="mb-4" style="border-bottom: 1px solid rgba(0,0,0,0.06); padding: 0.1em; font-size: large">
+            <b>업로드</b>
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" >
             {% csrf_token %}
 {#            {{ form.as_p }}#}
             <!-- 오류표시 Start -->
@@ -24,11 +25,12 @@
                 </div>
             {% endif %}
             <!-- 오류표시 End -->
-            <div class="mb-3">
+            <div class="mb-3" style="margin-left: 5.5rem;">
                 <input required name="image" type="file" accept="image/jpg, image/jpeg, image/png" multiple class="form-control-file">
             </div>
             <input type="submit" value="업로드" class="btn btn-success">
         </form>
     </div>
     <div class="row"></div>
+    </div>
 {% endblock %}
